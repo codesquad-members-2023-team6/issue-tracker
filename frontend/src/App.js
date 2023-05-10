@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.module.css';
+import { Icon } from '@components/Icon/Icon';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				>
 					Learn React
 				</a>
+				<Icon />
 			</header>
 		</div>
 	);
