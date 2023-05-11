@@ -49,7 +49,7 @@ export function Button(props) {
 
 	return (
 		<button className={buttonClassNames} onClick={_onClick}>
-			{icon === '+' && `${icon} `}
+			{icon}
 			{text}
 		</button>
 	);
