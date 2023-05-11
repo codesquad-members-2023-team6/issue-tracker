@@ -1,20 +1,44 @@
-import { Icon } from '@components/Icon/Icon';
+import Icon from '@components/Icon/Icon';
+import { DropdownElement } from './DropdownElement/DropdownElement';
 
-export function Dropdown(props) {
-	const { text, options = [] } = props;
+export const Dropdown = ({
+	isOpen,
+	btnOnClick,
+	optionOnClick,
+	btnText,
+	hasRadioBtn,
+	options,
+	header,
+	selectedId,
+}) => {
 	return (
 		<>
-			<div>
-				{text}
+			<button onClick={btnOnClick}>
+				{btnText}
 				<Icon name="chevronDown"></Icon>
-			</div>
-			<div className="panel">
-				<div className="label"></div>
-				{options.map((option, i) => (
-					<div key={i}>{option}</div>
-				))}
-			</div>
-			<div className="backdrop"></div>
+			</button>
+			{isOpen && (
+				<div>
+					<DropdownElement type="header" contents={header}></DropdownElement>
+					{options.map((option, i) => {
+						const isSelected = selectedId === option.id;
+						return (
+							<DropdownElement
+								id={option.id}
+								type="option"
+								key={i}
+								profile={option.profile ?? null}
+								contents={option.contents}
+								isSelected={isSelected}
+								hasRadioBtn={hasRadioBtn}
+								_onClick={optionOnClick}
+							></DropdownElement>
+						);
+					})}
+				</div>
+			)}
 		</>
 	);
-}
+};
+
+export default Dropdown;
