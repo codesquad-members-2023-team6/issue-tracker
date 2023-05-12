@@ -1,7 +1,14 @@
 import style from './Button.module.css';
 
-export function Button(props) {
-	const { icon, text, type, status, color, btnSize, _onClick } = props;
+export const Button = ({
+	icon,
+	text,
+	type,
+	status,
+	color,
+	btnSize,
+	_onClick,
+}) => {
 	const {
 		BtnStyle,
 		BtnColorBlue,
@@ -53,4 +60,4 @@ export function Button(props) {
 			{text}
 		</button>
 	);
-}
+};
