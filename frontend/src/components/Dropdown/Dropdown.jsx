@@ -1,5 +1,7 @@
-import Icon from '@components/Icon/Icon';
+import { Icon } from '@components/index';
 import { DropdownPanel } from './DropdownPanel/DropdownPanel';
+import styles from './Dropdown.module.css';
+import classNames from 'classnames/bind';
 
 export const Dropdown = ({
 	optionOnClick,
@@ -11,11 +13,16 @@ export const Dropdown = ({
 	isOpen,
 	toggleOpen,
 }) => {
+	const cx = classNames.bind(styles);
+	const buttonClassNames = `${cx('button')} typo-m typo-bold`;
 	return (
 		<>
-			<button onClick={toggleOpen}>
+			<button onClick={toggleOpen} className={buttonClassNames}>
 				{btnText}
-				<Icon name="chevronDown"></Icon>
+				<Icon
+					name="chevronDown"
+					fill="var(--color-light-neutral-text-weak)"
+				></Icon>
 			</button>
 			{isOpen && (
 				<DropdownPanel
