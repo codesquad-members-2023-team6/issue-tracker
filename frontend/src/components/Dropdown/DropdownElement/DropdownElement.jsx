@@ -1,5 +1,7 @@
 import Icon from '@components/Icon/Icon';
-import style from './DropdownElement.module.css';
+import styles from './DropdownElement.module.css';
+import classNames from 'classnames/bind';
+import { TYPE } from '@src/constants/dropdown';
 
 export const DropdownElement = ({
 	id,
@@ -10,11 +12,12 @@ export const DropdownElement = ({
 	hasRadioBtn,
 	_onClick,
 }) => {
-	const { DropdownElementStyle } = style;
-	const isHeader = type === 'header';
-	const headerClassNames = '';
-	const optionClassNames =
-		DropdownElementStyle + (isSelected ? ' selected' : '');
+	const cx = classNames.bind(styles);
+	const headerClassNames = cx('header');
+	const optionClassNames = cx('contents') + (isSelected ? ' selected' : '');
+
+	const isHeader = type === TYPE.HEADER;
+	const iconName = isSelected ? 'checkOnCircle' : 'checkOffCircle';
 
 	return isHeader ? (
 		<div className={headerClassNames}>{contents}</div>
@@ -22,9 +25,7 @@ export const DropdownElement = ({
 		<button onClick={_onClick} id={id} className={optionClassNames}>
 			{profile}
 			<label htmlFor={id}>{contents}</label>
-			{hasRadioBtn && (
-				<Icon name={isSelected ? 'checkOnCircle' : 'checkOffCircle'}></Icon>
-			)}
+			{hasRadioBtn && <Icon name={iconName}></Icon>}
 		</button>
 	);
 };

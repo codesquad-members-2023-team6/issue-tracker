@@ -1,3 +1,7 @@
-.DropdownElementStyle {
+.header {
+	background-color: var(--color-light-neutral-background-strong);
+}
+
+.contents {
 	background-color: var(--color-light-neutral-background-strong);
 }

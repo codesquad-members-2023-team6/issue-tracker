@@ -1,6 +1,8 @@
 import { DropdownElement } from '@components/Dropdown/DropdownElement/DropdownElement';
 import { createPortal } from 'react-dom';
-import style from './DropdownPanel.module.css';
+import styles from './DropdownPanel.module.css';
+import classNames from 'classnames/bind';
+import { TYPE } from '@src/constants/dropdown';
 
 export const DropdownPanel = ({
 	header,
@@ -14,32 +16,29 @@ export const DropdownPanel = ({
 		optionOnClick(e);
 		toggleOpen();
 	};
+	const cx = classNames.bind(styles);
+	const dropdonwPanelClassNames = cx('dropdown-panel');
+	const containerClassNames = cx('container');
 
-	const { DropdownPanelStyle, DropdownPanelContainerStyle } = style;
+	const isSelected = (selected, contents) => selected === contents;
 
 	return createPortal(
-		<div className={DropdownPanelStyle} onClick={toggleOpen}>
-			<div
-				className={DropdownPanelContainerStyle}
-				onClick={(e) => e.stopPropagation()}
-			>
-				<DropdownElement type="header" contents={header}></DropdownElement>
-				{options.map((option, i) => {
-					const isSelected = selected === option.contents;
-					return (
-						<DropdownElement
-							type="option"
-							key={i}
-							id={option.id}
-							profile={option.profile ?? null}
-							contents={option.contents}
-							isSelected={isSelected}
-							hasRadioBtn={hasRadioBtn}
-							_onClick={handleOption}
-							toggleOpen={toggleOpen}
-						></DropdownElement>
-					);
-				})}
+		<div className={dropdonwPanelClassNames} onClick={toggleOpen}>
+			<div className={containerClassNames}>
+				<DropdownElement type={TYPE.HEADER} contents={header}></DropdownElement>
+				{options.map((option, i) => (
+					<DropdownElement
+						type={TYPE.OPTION}
+						key={i}
+						id={option.id}
+						profile={option.profile ?? null}
+						contents={option.contents}
+						isSelected={isSelected(selected, option.contents)}
+						hasRadioBtn={hasRadioBtn}
+						_onClick={handleOption}
+						toggleOpen={toggleOpen}
+					></DropdownElement>
+				))}
 			</div>
 		</div>,
 		document.body
