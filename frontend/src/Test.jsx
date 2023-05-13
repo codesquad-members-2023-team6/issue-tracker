@@ -1,4 +1,3 @@
-import './App.module.css';
 import { Dropdown } from '@components/Dropdown/Dropdown';
 import { useState } from 'react';
 

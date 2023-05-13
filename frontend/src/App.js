@@ -1,5 +1,5 @@
-import './App.module.css';
 import { IssuePage } from '@containers/IssuePage/IssuePage';
+import { Test } from './Test';
 
 function App() {
 	if (process.env.NODE_ENV === 'development') {
@@ -10,6 +10,7 @@ function App() {
 	return (
 		<div className="App">
 			<IssuePage></IssuePage>
+			<Test></Test>
 		</div>
 	);
 }
