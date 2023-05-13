@@ -13,122 +13,85 @@
 	--typo-M-lineheight: 28px;
 	--typo-S-fontsize: 12px;
 	--typo-S-lineheight: 20px;
-
-	--color-gray50: #fefefe;
-	--color-gray100: #f7f7fc;
-	--color-gray200: #eff0f6;
-	--color-gray300: #d9dbe9;
-	--color-gray400: #bec1d5;
-	--color-gray500: #a0a3bd;
-	--color-gray600: #6e7191;
-	--color-gray700: #4e4b66;
-	--color-gray800: #2a2a44;
-	--color-gray900: #14142b;
-	--color-blue: #007aff;
-	--color-navy: #0025e6;
-	--color-red: #ff3b30;
-
-	--color-light-neutral-text: var(--color-gray700);
-	--color-light-neutral-text-weak: var(--color-gray600);
-	--color-light-neutral-text-strong: var(--color-gray900);
-	--color-light-neutral-background: var(--color-gray100);
-	--color-light-neutral-background-bold: var(--color-gray200);
-	--color-light-neutral-background-strong: var(--color-gray50);
-	--color-light-neutral-border: var(--color-gray300);
-	--color-light-neutral-border-active: var(--color-gray900);
-	--color-light-accent-text: var(--color-gray50);
-	--color-light-accent-text-weak: var(--color-blue);
-	--color-light-accent-background: var(--color-blue);
-	--color-light-accent-background-weak: var(--color-gray50);
-	--color-light-accent-background-strong: var(--color-gray900);
-	--color-light-accent-border-weak: var(--color-blue);
-	--color-light-danger-text: var(--color-red);
-	--color-light-danger-border: var(--color-red);
 }
 
-.TypoBody {
+.typo-body {
 	font-size: var(--typo-M-fontsize);
 	line-height: var(--typo-M-lineheight);
 	font-weight: var(--typo-fontweight-regular);
 }
 
-.TypoBodyMedium {
+.typo-body-medium {
 	font-size: var(--typo-M-fontsize);
 	line-height: var(--typo-M-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoTitle {
+.typo-title {
 	font-size: var(--typo-L-fontsize);
 	line-height: var(--typo-L-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoTitle {
+.typo-title {
 	font-size: var(--typo-L-fontsize);
 	line-height: var(--typo-L-lineheight);
 	font-weight: var(--typo-fontweight-regular);
 }
 
-.TypoTitleMedium {
+.typo-title-medium {
 	font-size: var(--typo-L-fontsize);
 	line-height: var(--typo-L-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoTitleStrong {
+.typo-title-strong {
 	font-size: var(--typo-XXL-fontsize);
 	line-height: var(--typo-XXL-lineheight);
 	font-weight: var(--typo-fontweight-regular);
 }
 
-.TypoButton {
+.typo-button {
 	font-size: var(--typo-M-fontsize);
 	line-height: var(--typo-M-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoButtonWeak {
+.typo-button-weak {
 	font-size: var(--typo-S-fontsize);
 	line-height: var(--typo-S-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoButtonStrong {
+.typo-button-strong {
 	font-size: var(--typo-L-fontsize);
 	line-height: var(--typo-L-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoPlaceholder {
+.typo-placeholder {
 	font-size: var(--typo-M-fontsize);
 	line-height: var(--typo-M-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoCaption {
+.typo-caption {
 	font-size: var(--typo-S-fontsize);
 	line-height: var(--typo-S-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.TypoLabel {
+.typo-label {
 	font-size: var(--typo-S-fontsize);
 	line-height: var(--typo-S-lineheight);
 	font-weight: var(--typo-fontweight-bold);
 }
 
 body {
-	margin: 0;
 	font-family: 'Pretendard Variable', Pretendard, -apple-system,
 		BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
 		'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
 		'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
 }

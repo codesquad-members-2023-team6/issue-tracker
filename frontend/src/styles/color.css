@@ -1,0 +1,32 @@
+:root {
+	--color-gray50: #fefefe;
+	--color-gray100: #f7f7fc;
+	--color-gray200: #eff0f6;
+	--color-gray300: #d9dbe9;
+	--color-gray400: #bec1d5;
+	--color-gray500: #a0a3bd;
+	--color-gray600: #6e7191;
+	--color-gray700: #4e4b66;
+	--color-gray800: #2a2a44;
+	--color-gray900: #14142b;
+	--color-blue: #007aff;
+	--color-navy: #0025e6;
+	--color-red: #ff3b30;
+
+	--color-light-neutral-text: var(--color-gray700);
+	--color-light-neutral-text-weak: var(--color-gray600);
+	--color-light-neutral-text-strong: var(--color-gray900);
+	--color-light-neutral-background: var(--color-gray100);
+	--color-light-neutral-background-bold: var(--color-gray200);
+	--color-light-neutral-background-strong: var(--color-gray50);
+	--color-light-neutral-border: var(--color-gray300);
+	--color-light-neutral-border-active: var(--color-gray900);
+	--color-light-accent-text: var(--color-gray50);
+	--color-light-accent-text-weak: var(--color-blue);
+	--color-light-accent-background: var(--color-blue);
+	--color-light-accent-background-weak: var(--color-gray50);
+	--color-light-accent-background-strong: var(--color-gray900);
+	--color-light-accent-border-weak: var(--color-blue);
+	--color-light-danger-text: var(--color-red);
+	--color-light-danger-border: var(--color-red);
+}
