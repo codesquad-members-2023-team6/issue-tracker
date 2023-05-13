@@ -1,41 +1,31 @@
 import Icon from '@components/Icon/Icon';
-import { DropdownElement } from './DropdownElement/DropdownElement';
+import { DropdownPanel } from './DropdownPanel/DropdownPanel';
 
 export const Dropdown = ({
-	isOpen,
-	btnOnClick,
 	optionOnClick,
 	btnText,
 	hasRadioBtn,
 	options,
 	header,
-	selectedId,
+	selected,
+	isOpen,
+	toggleOpen,
 }) => {
 	return (
 		<>
-			<button onClick={btnOnClick}>
+			<button onClick={toggleOpen}>
 				{btnText}
 				<Icon name="chevronDown"></Icon>
 			</button>
 			{isOpen && (
-				<div>
-					<DropdownElement type="header" contents={header}></DropdownElement>
-					{options.map((option, i) => {
-						const isSelected = selectedId === option.id;
-						return (
-							<DropdownElement
-								id={option.id}
-								type="option"
-								key={i}
-								profile={option.profile ?? null}
-								contents={option.contents}
-								isSelected={isSelected}
-								hasRadioBtn={hasRadioBtn}
-								_onClick={optionOnClick}
-							></DropdownElement>
-						);
-					})}
-				</div>
+				<DropdownPanel
+					header={header}
+					options={options}
+					selected={selected}
+					hasRadioBtn={hasRadioBtn}
+					optionOnClick={optionOnClick}
+					toggleOpen={toggleOpen}
+				></DropdownPanel>
 			)}
 		</>
 	);

@@ -1,4 +1,5 @@
 import Icon from '@components/Icon/Icon';
+import style from './DropdownElement.module.css';
 
 export const DropdownElement = ({
 	id,
@@ -9,9 +10,11 @@ export const DropdownElement = ({
 	hasRadioBtn,
 	_onClick,
 }) => {
+	const { DropdownElementStyle } = style;
 	const isHeader = type === 'header';
 	const headerClassNames = '';
-	const optionClassNames = isSelected ? 'selected' : '';
+	const optionClassNames =
+		DropdownElementStyle + (isSelected ? ' selected' : '');
 
 	return isHeader ? (
 		<div className={headerClassNames}>{contents}</div>

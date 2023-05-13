@@ -8,9 +8,7 @@ export const Icon = ({
 	fill = '',
 }) => {
 	const IconComponent = iconfiles[name];
-	return (
-		<IconComponent width={width} height={height} fill={fill}></IconComponent>
-	);
+	return <IconComponent width={width} height={height}></IconComponent>;
 };
 
 export default Icon;
