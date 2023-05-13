@@ -15,6 +15,39 @@
 	--typo-S-lineheight: 20px;
 }
 
+.typo-bold {
+	font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-regular {
+	font-weight: var(--typo-fontweight-regular);
+}
+
+.typo-xxl {
+	font-size: var(--typo-XXL-fontsize);
+	line-height: var(--typo-XXL-lineheight);
+}
+
+.typo-xl {
+	font-size: var(--typo-XL-fontsize);
+	line-height: var(--typo-XL-lineheight);
+}
+
+.typo-l {
+	font-size: var(--typo-L-fontsize);
+	line-height: var(--typo-L-lineheight);
+}
+
+.typo-m {
+	font-size: var(--typo-M-fontsize);
+	line-height: var(--typo-M-lineheight);
+}
+
+.typo-s {
+	font-size: var(--typo-S-fontsize);
+	line-height: var(--typo-S-lineheight);
+}
+
 .typo-body {
 	font-size: var(--typo-M-fontsize);
 	line-height: var(--typo-M-lineheight);
@@ -85,6 +118,12 @@
 	font-size: var(--typo-S-fontsize);
 	line-height: var(--typo-S-lineheight);
 	font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-dropdown-header {
+	font-size: var(--typo-S-fontsize);
+	line-height: var(--typo-S-lineheight);
+	font-weight: var(--typo-fontweight-regular);
 }
 
 body {
