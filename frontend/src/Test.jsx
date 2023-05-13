@@ -9,7 +9,7 @@ export function Test() {
 	};
 
 	return (
-		<>
+		<div style={{ marginLeft: '300px' }}>
 			<Dropdown
 				isOpen={isDropdownOpen}
 				btnText={selected}
@@ -34,6 +34,6 @@ export function Test() {
 					setSelected(currentTarget.innerText)
 				}
 			></Dropdown>
-		</>
+		</div>
 	);
 }

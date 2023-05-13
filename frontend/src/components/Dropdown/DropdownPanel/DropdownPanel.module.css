@@ -7,9 +7,9 @@
 }
 
 .container {
+	position: fixed;
 	display: flex;
 	flex-direction: column;
-	width: 240px;
 	background-color: var(--color-light-neutral-background-strong);
 	border: 1px solid var(--color-light-neutral-border);
 	border-radius: 16px;
