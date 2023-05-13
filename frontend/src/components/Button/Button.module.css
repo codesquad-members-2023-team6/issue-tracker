@@ -1,33 +1,33 @@
-.BtnStyle {
+.btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 4px;
 }
 
-.BtnColorBlue {
+.color-blue {
 	background-color: var(--color-light-accent-background);
 	color: var(--color-light-accent-text);
 }
 
-.BtnOutlineColorBlue {
+.outline-color-blue {
 	background-color: rgba(var(--color-light-accent-background), 0);
 	border: 1px solid var(--color-light-accent-background);
 	color: var(--color-light-accent-background);
 }
 
-.BtnColorBlack {
+.color-black {
 	background-color: var(--color-light-accent-background-strong);
 	color: var(--color-light-accent-text);
 }
 
-.BtnOutlineColorBlack {
+.outline-color-black {
 	background-color: rgba(var(--color-light-accent-background-strong), 0);
 	border: 1px solid var(--color-light-accent-background-strong);
 	color: var(--color-light-neutral-text);
 }
 
-.BtnSizeL {
+.size-l {
 	width: 240px;
 	height: 56px;
 	padding: 0px;
@@ -37,7 +37,7 @@
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.BtnSizeM {
+.size-m {
 	width: 160px;
 	height: 40px;
 	padding: 0px;
@@ -47,7 +47,7 @@
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.BtnSizeS {
+.size-s {
 	width: 120px;
 	height: 40px;
 	padding: 0px;
@@ -57,33 +57,33 @@
 	font-weight: var(--typo-fontweight-bold);
 }
 
-.BtnStyleContained {
+.type-contained {
 	border: 1px solid;
 }
 
-.BtnStyleGhost {
+.type-ghost {
 	padding: 0px 24px;
 	background-color: rgba(var(--color-light-accent-background), 0);
 	border: 1px solid rgba(var(--color-light-accent-background), 0);
 	color: var(--color-light-neutral-text-strong);
 }
 
-.BtnStatusDefault {
+.status-default {
 	opacity: 100%;
 }
 
-.BtnStatusHover {
+.status-hover {
 	opacity: 80%;
 }
 
-.BtnStatusPress {
+.status-press {
 	opacity: 64%;
 }
 
-.BtnStatusDisabled {
+.status-disabled {
 	opacity: 32%;
 }
 
-.BtnStatusActive {
+.status-active {
 	background-color: var(--color-light-neutral-background);
 }

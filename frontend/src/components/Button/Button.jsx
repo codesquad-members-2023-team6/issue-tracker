@@ -1,4 +1,5 @@
-import style from './Button.module.css';
+import styles from './Button.module.css';
+import classNames from 'classnames/bind';
 
 export const Button = ({
 	icon,
@@ -9,50 +10,40 @@ export const Button = ({
 	btnSize,
 	_onClick,
 }) => {
-	const {
-		BtnStyle,
-		BtnColorBlue,
-		BtnOutlineColorBlue,
-		BtnColorBlack,
-		BtnOutlineColorBlack,
-		BtnSizeL,
-		BtnSizeM,
-		BtnSizeS,
-		BtnStyleContained,
-		BtnStyleGhost,
-		BtnStatusDefault,
-		BtnStatusHover,
-		BtnStatusPress,
-		BtnStatusDisabled,
-		BtnStatusActive,
-	} = style;
+	const cx = classNames.bind(styles);
 
 	const btnSizeKind =
-		btnSize === 'l' ? BtnSizeL : btnSize === 'm' ? BtnSizeM : BtnSizeS;
+		btnSize === 'l'
+			? cx('size-l')
+			: btnSize === 'm'
+			? cx('size-m')
+			: cx('size-s');
 
 	const btnStatus =
 		status === 'hover'
-			? BtnStatusHover
+			? cx('status-hover')
 			: status === 'press'
-			? BtnStatusPress
+			? cx('status-press')
 			: status === 'disabled'
-			? BtnStatusDisabled
+			? cx('status-disabled')
 			: status === 'active'
-			? BtnStatusActive
-			: BtnStatusDefault;
+			? cx('status-active')
+			: cx('status-default');
 
-	const btnType = type === 'ghost' ? BtnStyleGhost : BtnStyleContained;
+	const btnType = type === 'ghost' ? cx('type-ghost') : cx('type-contained');
 
 	const btnColor =
 		color === 'blue'
 			? type === 'outline'
-				? BtnOutlineColorBlue
-				: BtnColorBlue
+				? cx('outline-color-blue')
+				: cx('color-blue')
 			: type === 'outline'
-			? BtnOutlineColorBlack
-			: BtnColorBlack;
+			? cx('outline-color-black')
+			: cx('color-blue');
 
-	const buttonClassNames = `${BtnStyle} ${btnColor} ${btnSizeKind} ${btnStatus} ${btnType}`;
+	const buttonClassNames = `${cx(
+		'btn'
+	)} ${btnColor} ${btnSizeKind} ${btnStatus} ${btnType}`;
 
 	return (
 		<button className={buttonClassNames} onClick={_onClick}>
