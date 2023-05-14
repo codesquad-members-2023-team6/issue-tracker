@@ -3,32 +3,20 @@ import Dropdown from '@components/Dropdown/Dropdown';
 import { useRef, useState } from 'react';
 import { Button } from './components/Button/Button';
 import { IssuePage } from '@containers/IssuePage/IssuePage';
-
+import { InformationTag } from '@components/InformationTag/InformationTag';
+import { Icon } from './components';
 
 function App() {
-  
-  if (process.env.NODE_ENV === 'development') {
+	if (process.env.NODE_ENV === 'development') {
 		const { worker } = require('./mocks/browser');
 		worker.start();
 	}
-  
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedId, setSelectedId] = useState(false);
 	return (
 		<div className="App">
 			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
 				<Dropdown
 					isOpen={isOpen}
 					btnOnClick={() => setIsOpen(!isOpen)}
@@ -47,7 +35,27 @@ function App() {
 				></Dropdown>
 			</header>
 			<IssuePage></IssuePage>
-			<Button text="BUTTON" btnSize="l" color="blue"></Button>
+			<Button
+				icon={<Icon name="plus"></Icon>}
+				text="BUTTON"
+				btnSize="l"
+				color="blue"
+			></Button>
+			<Button text="BUTTON" btnSize="m" color="black"></Button>
+			<Button text="BUTTON" btnSize="s" color="black"></Button>
+			<InformationTag
+				icon={<Icon name="alertCircle" fill="white"></Icon>}
+				text="Label"
+				bgColor="#007AFF"
+				mode="light"
+			></InformationTag>
+			<InformationTag
+				icon={<Icon name="archive" fill="white"></Icon>}
+				text="Label"
+				bgColor="red"
+				mode="light"
+			></InformationTag>
+			<InformationTag text="Label" mode="neutral"></InformationTag>
 		</div>
 	);
 }

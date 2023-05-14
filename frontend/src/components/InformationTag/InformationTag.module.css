@@ -1,0 +1,23 @@
+.TagStyle {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0px 16px;
+	gap: 4px;
+	border-radius: 50px;
+	height: 32px;
+	width: fit-content;
+}
+
+.LightColor {
+	color: var(--color-light-accent-text);
+}
+
+.NeutralColor {
+	color: var(--color-light-neutral-text-weak);
+}
+
+.NeutralBgColor {
+	background-color: var(--color-light-neutral-background);
+	border: 1px solid var(--color-light-neutral-border);
+}
