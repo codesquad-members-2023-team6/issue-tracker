@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  height: 36px;
+
+  border-radius: 16px 16px 0 0;
+  background-color: var(--color-light-neutral-background);
+}
+
+.contents {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--color-light-neutral-background-strong);
+  border: none;
+  border-top: 1px solid var(--color-light-neutral-border);
+  border-radius: 0 0 16px 16px;
+}
+
+.contents:hover,
+.contents:hover * {
+  cursor: pointer;
+}
+
+.contents label {
+  display: block;
+  width: 100%;
+  text-align: left;
+}

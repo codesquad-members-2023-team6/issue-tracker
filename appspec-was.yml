@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/issueTrackerWas # 인스턴스에서 파일이 저장될 위치
+hooks:
+  AfterInstall:
+    - location: deploy-was.sh
+      timeout: 60
+      runas: root

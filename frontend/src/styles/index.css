@@ -1,0 +1,11 @@
+@import './reset.css';
+@import './color.css';
+@import './typography.css';
+
+body {
+  background-color: var(--color-light-neutral-background);
+}
+
+:root {
+  --contents-width: 1280px;
+}

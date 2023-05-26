@@ -1,0 +1,29 @@
+.tab {
+  display: flex;
+  border: 1px solid var(--color-light-neutral-border);
+  width: fit-content;
+  border-radius: 11px;
+  max-height: 40px;
+}
+
+.tab button:first-child {
+  border-right: 1px solid var(--color-light-neutral-border);
+  border-radius: 11px 0 0 11px;
+}
+
+.tab button:last-child {
+  border-radius: 0 11px 11px 0;
+}
+
+.tab button:hover {
+  cursor: pointer;
+}
+
+.ghost {
+  border: 0;
+}
+
+.ghost button:first-child {
+  border: 0;
+  padding: 0;
+}

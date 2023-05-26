@@ -1,4 +1,4 @@
-REPOSITORY=/home/ubuntu/ec2-user/app
+REPOSITORY=/home/ubuntu/issueTrackerWas
 LOG_PATH=$REPOSITORY/logs
 mkdir -p $LOG_PATH
 touch $LOG_PATH/app.log

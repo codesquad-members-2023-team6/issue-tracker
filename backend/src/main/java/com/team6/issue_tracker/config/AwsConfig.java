@@ -1,4 +1,4 @@
-package com.team6.issue_tracker.config;
+package com.team6.issue_tracker.adapter.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

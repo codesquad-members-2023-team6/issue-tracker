@@ -1,0 +1,152 @@
+.container {
+  display: grid;
+  gap: 4px;
+}
+
+.textinput {
+  display: flex;
+  padding: 0px 24px;
+  align-items: center;
+  position: relative;
+}
+
+.textinput:focus-within,
+.textinput:focus-within .bottom {
+  background-color: var(--color-light-neutral-background-strong);
+}
+
+.textinput:focus-within {
+  outline: 1px solid #14142b;
+}
+
+.size-s {
+  flex-direction: row;
+  gap: 8px;
+  border-radius: 16px;
+  height: 40px;
+}
+
+.size-l {
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 14px;
+  height: 56px;
+}
+
+.label {
+  font-size: var(--typo-M-fontsize);
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: var(--color-light-neutral-text-weak);
+  transition: all 0.1s ease-in;
+}
+
+.textarea .label {
+  top: 16px;
+  transform: translateY(0%);
+  background: var(--color-light-neutral-background-bold);
+}
+
+.label.filled,
+.textinput:focus-within .label {
+  font-size: var(--typo-S-fontsize);
+  transform: translateY(0%);
+  color: var(--color-light-neutral-text);
+}
+
+.textarea .label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+  padding: 0 16px;
+  height: 44px;
+  left: 0;
+  top: 0;
+  transition: font-size 0.1s ease-in, top 0.1s ease-in;
+}
+
+.textarea.textinput:focus-within .label {
+  background: var(--color-light-neutral-background-strong);
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: inherit;
+  text-align: left;
+  resize: none;
+}
+
+.input.with-label {
+  margin-top: 16px;
+}
+
+.textarea .input {
+  height: 340px;
+  margin-top: 28px;
+}
+
+.input::placeholder {
+  font-size: var(--typo-M-fontsize);
+  line-height: var(--typo-M-lineheight);
+  font-weight: var(--typo-fontweight-regular);
+  color: var(--color-light-neutral-text-weak);
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.initial {
+  background-color: var(--color-light-neutral-background-bold);
+}
+
+.error {
+  color: var(--color-light-danger-border);
+  text-align: left;
+}
+
+.caption {
+  position: absolute;
+  display: flex;
+  bottom: 52px;
+  left: 0;
+  height: 52px;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.file-container {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  height: 52px;
+  gap: 4px;
+  width: 100%;
+
+  align-items: center;
+  border-radius: 0 0 16px 16px;
+  padding: 0 16px;
+  border-top: 1px dashed var(--color-light-neutral-border);
+}
+
+.bottom {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  background-color: var(--color-light-neutral-background-bold);
+  align-items: center;
+  border-radius: 0 0 16px 16px;
+}

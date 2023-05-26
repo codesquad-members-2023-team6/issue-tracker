@@ -1,7 +1,9 @@
 ### frontend ###
+.env
 
 # dependencies
 /node_modules
+/frontend/styling-with-css-module/
 /.pnp
 .pnp.js
 

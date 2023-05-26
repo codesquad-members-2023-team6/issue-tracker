@@ -1,0 +1,18 @@
+.login-page {
+  display: grid;
+  justify-items: center;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.container {
+  margin-top: 64px;
+  max-width: 320px;
+  width: 100%;
+  display: grid;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}

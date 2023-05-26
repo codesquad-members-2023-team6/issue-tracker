@@ -1,0 +1,7 @@
+.filterbar {
+  display: flex;
+  border: 1px solid var(--color-light-neutral-border);
+  width: fit-content;
+  border-radius: 11px;
+  max-height: 40px;
+}

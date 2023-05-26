@@ -1,0 +1,12 @@
+.issue-page {
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .right {
+  display: flex;
+  gap: 16px;
+}

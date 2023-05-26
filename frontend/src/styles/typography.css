@@ -1,0 +1,137 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css');
+
+:root {
+  --typo-fontweight-bold: 700;
+  --typo-fontweight-regular: 500;
+  --typo-XXL-fontsize: 32px;
+  --typo-XXL-lineheight: 48px;
+  --typo-XL-fontsize: 24px;
+  --typo-XL-lineheight: 40px;
+  --typo-L-fontsize: 18px;
+  --typo-L-lineheight: 32px;
+  --typo-M-fontsize: 16px;
+  --typo-M-lineheight: 28px;
+  --typo-S-fontsize: 12px;
+  --typo-S-lineheight: 20px;
+}
+
+.typo-bold {
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-regular {
+  font-weight: var(--typo-fontweight-regular);
+}
+
+.typo-xxl {
+  font-size: var(--typo-XXL-fontsize);
+  line-height: var(--typo-XXL-lineheight);
+}
+
+.typo-xl {
+  font-size: var(--typo-XL-fontsize);
+  line-height: var(--typo-XL-lineheight);
+}
+
+.typo-l {
+  font-size: var(--typo-L-fontsize);
+  line-height: var(--typo-L-lineheight);
+}
+
+.typo-m {
+  font-size: var(--typo-M-fontsize);
+  line-height: var(--typo-M-lineheight);
+}
+
+.typo-s {
+  font-size: var(--typo-S-fontsize);
+  line-height: var(--typo-S-lineheight);
+}
+
+.typo-body {
+  font-size: var(--typo-M-fontsize);
+  line-height: var(--typo-M-lineheight);
+  font-weight: var(--typo-fontweight-regular);
+}
+
+.typo-body-medium {
+  font-size: var(--typo-M-fontsize);
+  line-height: var(--typo-M-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-title {
+  font-size: var(--typo-L-fontsize);
+  line-height: var(--typo-L-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-title {
+  font-size: var(--typo-L-fontsize);
+  line-height: var(--typo-L-lineheight);
+  font-weight: var(--typo-fontweight-regular);
+}
+
+.typo-title-medium {
+  font-size: var(--typo-L-fontsize);
+  line-height: var(--typo-L-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-title-strong {
+  font-size: var(--typo-XXL-fontsize);
+  line-height: var(--typo-XXL-lineheight);
+  font-weight: var(--typo-fontweight-regular);
+}
+
+.typo-button {
+  font-size: var(--typo-M-fontsize);
+  line-height: var(--typo-M-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-button-weak {
+  font-size: var(--typo-S-fontsize);
+  line-height: var(--typo-S-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-button-strong {
+  font-size: var(--typo-L-fontsize);
+  line-height: var(--typo-L-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-placeholder {
+  font-size: var(--typo-M-fontsize);
+  line-height: var(--typo-M-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-caption {
+  font-size: var(--typo-S-fontsize);
+  line-height: var(--typo-S-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-label {
+  font-size: var(--typo-S-fontsize);
+  line-height: var(--typo-S-lineheight);
+  font-weight: var(--typo-fontweight-bold);
+}
+
+.typo-dropdown-header {
+  font-size: var(--typo-S-fontsize);
+  line-height: var(--typo-S-lineheight);
+  font-weight: var(--typo-fontweight-regular);
+}
+
+body,
+textarea {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

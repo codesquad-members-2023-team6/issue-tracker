@@ -1,0 +1,15 @@
+.button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-light-neutral-text-weak);
+  justify-content: center;
+}
+
+.button:hover,
+.button:focus {
+  opacity: 0.8;
+  cursor: pointer;
+}

@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 94px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--contents-width);
+  padding: 0 24px;
+}
+
+.container svg:hover {
+  cursor: pointer;
+}

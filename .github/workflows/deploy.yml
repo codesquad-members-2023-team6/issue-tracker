@@ -2,17 +2,20 @@ name: Deploy to AWS CodeDeploy
 
 on:
   push:
-    branches: [release]
+    branches: [ release ]
 
 env:
   PROJECT_NAME: issueTracker
   BUCKET_NAME: issuetrackerbucket
   CODE_DEPLOY_APP_NAME: issueTracker-app
   DEPLOYMENT_GROUP_NAME: issueTrackerGroup
-  AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+
+  BUCKET_NAME_WEB: issuetracker-bucket-web
+  CODE_DEPLOY_APP_NAME_WEB: issuetracker-webserver
+  DEPLOYMENT_GROUP_NAME_WEB: issuetracker-app
 
 jobs:
-  build-and-deploy:
+  was-build-and-deploy:
     runs-on: ubuntu-latest
     env:
       APPLICATION: ${{ secrets.APPLICATION }}
@@ -39,20 +42,20 @@ jobs:
           ./gradlew clean build
 
       - name: Make Directory for deliver
-        run: mkdir deploy
+        run: mkdir -p deploy/was
 
       - name: Copy Jar, appspec.yml and deploy.sh
         run: |
           cp ./backend/build/libs/*.jar ./deploy/
-          cp ./appspec.yml ./deploy/
-          cp ./deploy.sh ./deploy/
+          cp ./appspec-was.yml ./deploy/appspec.yml
+          cp ./deploy-was.sh ./deploy/
 
       - name: Make zip file
-        run: zip -r ./issueTracker-build.zip ./deploy
+        run: zip -r ./issueTracker-build.zip ./deploy/
 
       - name: Upload ZIP to S3
         run: |
-          aws s3 cp ./issueTracker-build.zip s3://${{ env.BUCKET_NAME }}/issueTracker-build.zip
+          aws s3 cp ./issueTracker-build.zip s3://${{ env.BUCKET_NAME }}/deploy/was/issueTracker-build.zip
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -64,8 +67,59 @@ jobs:
             --application-name ${{ env.CODE_DEPLOY_APP_NAME }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --deployment-group-name ${{ env.DEPLOYMENT_GROUP_NAME }} \
-            --s3-location bucket=${{ env.BUCKET_NAME }},bundleType=zip,key=issueTracker-build.zip
+            --s3-location bucket=${{ env.BUCKET_NAME }},bundleType=zip,key=deploy/was/issueTracker-build.zip
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  web-build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./frontend
+
+      - name: Build React App
+        run: npm run build
+        working-directory: ./frontend
+
+      - name: Make Directory for deliver
+        run: mkdir -p deploy/web
+
+      - name: Copy build, appspec.yml and deploy.sh
+        run: |
+          cp -r ./frontend/build/ ./deploy/
+          cp ./appspec-web.yml ./deploy/appspec.yml
+          cp ./deploy-web.sh ./deploy/
+
+      - name: Make zip file
+        run: zip -r ./react-build.zip ./deploy/
+
+      - name: Upload ZIP to S3
+        run: |
+          aws s3 cp ./react-build.zip s3://${{ env.BUCKET_NAME_WEB }}/deploy/web/react-build.zip
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_WEB }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_WEB }}
+
+      - name: Deploy to CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ env.CODE_DEPLOY_APP_NAME_WEB }} \
+            --deployment-config-name CodeDeployDefault.OneAtATime \
+            --deployment-group-name ${{ env.DEPLOYMENT_GROUP_NAME_WEB }} \
+            --s3-location bucket=${{ env.BUCKET_NAME_WEB }},bundleType=zip,key=deploy/web/react-build.zip
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_WEB }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_WEB }}
