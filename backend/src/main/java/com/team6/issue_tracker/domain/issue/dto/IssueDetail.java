@@ -65,7 +65,7 @@ public class IssueDetail {
                 .isOpen(dto.getStatus() == Status.OPEN)
                 .createdAt(dto.getCreatedAt())
                 .labelOnIssue(getLabelOnIssue(dto.getLabelList()))
-                .milestoneIdx(nullableMilestone(dto.getMilestone()))
+                .milestone(nullableMilestone(dto.getMilestone()))
                 .editedAt(Instant.now())
                 .isDeleted(false)
                 .build();

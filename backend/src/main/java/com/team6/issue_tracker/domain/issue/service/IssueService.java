@@ -83,8 +83,8 @@ public class IssueService {
 
     private Milestone getMilestone(Issue issue) {
         Milestone milestone = null;
-        if (issue.getMilestoneIdx() != null) {
-            milestone =milestoneService.findById(issue.getMilestoneIdx().getId());
+        if (issue.getMilestone() != null) {
+            milestone =milestoneService.findById(issue.getMilestone().getId());
         }
         return milestone;
     }

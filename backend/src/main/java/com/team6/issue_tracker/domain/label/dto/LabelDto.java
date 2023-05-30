@@ -10,11 +10,11 @@ public class LabelDto {
     private String backgroundColor;
     private String style;
 
-    public LabelDto(Long labelIdx, String title, String backgroundColor, String textColor) {
+    public LabelDto(Long labelIdx, String title, String backgroundColor, String style) {
         this.labelIdx = labelIdx;
         this.title = title;
         this.backgroundColor = backgroundColor;
-        this.style = textColor;
+        this.style = style;
     }
 
     public static LabelDto of(Label label) {

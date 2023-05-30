@@ -34,7 +34,7 @@ public class CreateIssueRequest {
                 .writer(AggregateReference.to(writer.getMemberIdx()))
                 .assignee(AggregateReference.to(assignee.getMemberIdx()))
                 .labelOnIssue(labelingMap)
-                .milestoneIdx(AggregateReference.to(milestone.getMilestoneIdx()))
+                .milestone(AggregateReference.to(milestone.getMilestoneIdx()))
                 .createdAt(Instant.now())
                 .isOpen(true)
                 .isDeleted(false)

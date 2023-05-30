@@ -80,8 +80,8 @@ public class PageService {
 
     private Milestone getMilestone(Map<Long, Milestone> milestones, Issue issue) {
         Milestone milestone = null;
-        if (issue.getMilestoneIdx() != null) {
-            milestone = milestones.get(issue.getMilestoneIdx().getId());
+        if (issue.getMilestone() != null) {
+            milestone = milestones.get(issue.getMilestone().getId());
         }
         return milestone;
     }

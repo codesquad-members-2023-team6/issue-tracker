@@ -38,7 +38,7 @@ public class Issue {
     private AggregateReference<Member, @NotNull Long> writer;
     private AggregateReference<Member, @NotNull Long> assignee;
 
-    private AggregateReference<Milestone, @NotNull Long> milestoneIdx;
+    private AggregateReference<Milestone, @NotNull Long> milestone;
 
     @Valid
     @MappedCollection(idColumn = "issue_idx", keyColumn = "labeling_idx")

@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Builder
-@AllArgsConstructor
 @Table("member")
 public class Member {
 
