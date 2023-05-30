@@ -24,7 +24,7 @@ class MemberRepositoryTest {
     @Test
     @DisplayName("회원 가입을 할 수 있다.")
     void joinTest() {
-        Member testMember = Member.newMember("testMember", "1234", "");
+        Member testMember = Member.newMember("testMember", "테스트멤버", "1234", "");
         Member savedMember = memberRepository.save(testMember);
         assertThat(testMember.getId()).isEqualTo(savedMember.getId());
     }
@@ -33,7 +33,7 @@ class MemberRepositoryTest {
     @DisplayName("회원 가입을 하면 회원 레포지토리 저장 개수가 1 늘어난다.")
     void joinRepositoryCountTest() {
         long beforeCount = memberRepository.count();
-        Member testMember = Member.newMember("testMember", "1234", "");
+        Member testMember = Member.newMember("testMember", "테스트멤버", "1234", "");
         memberRepository.save(testMember);
         assertThat(memberRepository.count()).isEqualTo(beforeCount + 1);
     }

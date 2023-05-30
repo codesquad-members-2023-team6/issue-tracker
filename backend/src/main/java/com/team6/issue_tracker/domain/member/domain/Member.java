@@ -23,22 +23,30 @@ public class Member {
     private String id;
 
     @NotNull
+    private String name;
+
+    @NotNull
     private String password;
 
     private String profileImageUrl;
 
-    @Column("github_join")
-    private Boolean githubState;
-
     @PersistenceCreator
-    private Member(String id, String password, String profileImageUrl, Boolean githubState) {
+    public Member(Long memberIdx, String id, String name, String password, String profileImageUrl) {
+        this.memberIdx = memberIdx;
         this.id = id;
+        this.name = name;
         this.password = password;
         this.profileImageUrl = profileImageUrl;
-        this.githubState = githubState;
     }
 
-    public static Member newMember(String id, String password, String profileImageUrl) {
-        return new Member(id, password, profileImageUrl, false);
+    private Member(String id, String name, String password, String profileImageUrl) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public static Member newMember(String id, String name, String password, String profileImageUrl) {
+        return new Member(id, name, password, profileImageUrl);
     }
 }

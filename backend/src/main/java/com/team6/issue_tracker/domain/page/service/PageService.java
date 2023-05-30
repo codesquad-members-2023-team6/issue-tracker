@@ -31,7 +31,8 @@ public class PageService {
     private final LabelService labelService;
     private final MilestoneService milestoneService;
 
-    public IssuePageResponse getAPage(Integer offset, IssueFilter filter) {
+    public IssuePageResponse getAPage(int offset, IssueFilter filter) {
+        //
 
         Map<Long, MemberDto> members = memberService.getAllMembers();
         Map<Long, Milestone> milestones = milestoneService.getAllMilestones();

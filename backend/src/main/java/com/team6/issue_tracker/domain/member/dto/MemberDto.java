@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class MemberDto {
     Long memberIdx;
+    String id;
     String name;
     String profileImageUrl;
 

@@ -19,7 +19,7 @@ public class Label {
 
     private String backgroundColor;
 
-    private String textColor;
+    private String style;
 
     private Boolean isDeleted;
 
@@ -29,7 +29,7 @@ public class Label {
         this.title = title;
         this.description = description;
         this.backgroundColor = backgroundColor;
-        this.textColor = textColor;
+        this.style = textColor;
         this.isDeleted = isDeleted;
     }
 
@@ -37,7 +37,7 @@ public class Label {
         this.title = title;
         this.description = description;
         this.backgroundColor = backgroundColor;
-        this.textColor = textColor;
+        this.style = textColor;
         this.isDeleted = isDeleted;
     }
 

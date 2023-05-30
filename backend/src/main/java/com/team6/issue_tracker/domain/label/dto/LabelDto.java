@@ -8,16 +8,16 @@ public class LabelDto {
     private Long labelIdx;
     private String title;
     private String backgroundColor;
-    private String textColor;
+    private String style;
 
     public LabelDto(Long labelIdx, String title, String backgroundColor, String textColor) {
         this.labelIdx = labelIdx;
         this.title = title;
         this.backgroundColor = backgroundColor;
-        this.textColor = textColor;
+        this.style = textColor;
     }
 
     public static LabelDto of(Label label) {
-        return new LabelDto(label.getLabelIdx(), label.getTitle(), label.getBackgroundColor(), label.getTextColor());
+        return new LabelDto(label.getLabelIdx(), label.getTitle(), label.getBackgroundColor(), label.getStyle());
     }
 }
