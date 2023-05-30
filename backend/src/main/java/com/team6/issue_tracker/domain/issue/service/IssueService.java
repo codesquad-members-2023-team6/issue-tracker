@@ -63,7 +63,8 @@ public class IssueService {
         Map<Long, Member> members = memberService.findMembers(issue.getWriter(), issue.getAssignee());
 
         Member writer = members.get(issue.getWriter().getId());
-        Member assignee = members.get(issue.getAssignee().getId());
+
+        Member assignee = getAssignee(members, issue);
 
         Milestone milestone = getMilestone(issue);
 
@@ -79,6 +80,14 @@ public class IssueService {
         }
 
         return IssueDetail.toDetails(issue, MemberDto.from(writer), MemberDto.from(assignee), labelDtoList, milestone, commentDtos);
+    }
+
+    private Member getAssignee(Map<Long, Member> members, Issue issue) {
+        Member assginee = null;
+        if (issue.getAssignee() != null) {
+            assginee = members.get(issue.getAssignee().getId());
+        }
+        return assginee;
     }
 
     private Milestone getMilestone(Issue issue) {
