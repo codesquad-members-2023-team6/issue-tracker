@@ -24,7 +24,6 @@ export const FILTER_KEYS = {
 
 export const initialFilter = Object.seal({
   [FILTER_KEYS.STATUS]: 'open',
-  [FILTER_KEYS.PAGE]: 0,
   [FILTER_KEYS.ASSIGNEE]: null,
   [FILTER_KEYS.LABEL]: null,
   [FILTER_KEYS.MILESTONE]: null,

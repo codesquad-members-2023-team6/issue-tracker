@@ -5,23 +5,14 @@ import { useEffect, useState } from 'react';
 import { patchIssueTitle, patchIssueStatus } from '@src/services/issue';
 import { DetailUpdateTitle, DetailTitle } from '@containers/index';
 
-import { useParams } from 'react-router-dom';
-import { getIssueDetail } from '@src/services/issue';
-
-export const DetailHeader = ({}) => {
-  const params = useParams();
-
-  const [issueObject, setIssueObject] = useState({});
-
-  useEffect(() => {
-    (async () => {
-      const issueId = params.issueId;
-      const response = await getIssueDetail({ issueId });
-
-      setIssueObject(response);
-    })();
-  }, []);
-
+export const DetailHeader = ({
+  index,
+  status,
+  createdAt,
+  writerName,
+  commentLegnth,
+  titleState,
+}) => {
   const cx = classNames.bind(styles);
   const headerClassNames = `${cx('header')}`;
   const issueElClassNames = `${cx('issue-element')}`;
@@ -31,35 +22,24 @@ export const DetailHeader = ({}) => {
   const issueAmendClassNames = `${cx('issue-amend')}`;
   const infoClassNames = `${cx('info')}`;
 
-  const issueId = issueObject?.index;
-  const timeStamp = issueObject?.createdAt;
-  const writer = issueObject?.writer?.name;
-  const commentLegnth = issueObject?.comment?.length;
+  const issueId = index;
+  const timeStamp = createdAt;
+  const writer = writerName;
 
-  const [issueStatus, setIssueStatus] = useState(null);
+  const [issueStatus, setIssueStatus] = useState(status);
   const [onClickEditTitle, setOnClickEditTitle] = useState(false);
-  const [issueTitle, setIssueTitle] = useState(null);
-  const [inputValue, setInputValue] = useState('');
+  const [issueTitle, setIssueTitle] = titleState;
+  const [inputValue, setInputValue] = useState(issueTitle);
 
   const ISSUE_OPEN = '이슈 열기';
   const ISSUE_CLOSE = '이슈 닫기';
   const OPENED_ISSUE = '열린 이슈';
   const CLOSED_ISSUE = '닫힌 이슈';
 
-  const iconName = issueStatus === 'open' ? 'alertCircle' : 'archive';
-  const iconStyle = issueStatus === 'open' ? 'solid' : 'outline';
-  const tagText = issueStatus === 'open' ? OPENED_ISSUE : CLOSED_ISSUE;
-  const btnText = issueStatus === 'open' ? ISSUE_CLOSE : ISSUE_OPEN;
-
-  useEffect(() => {
-    if (issueObject.status !== undefined) {
-      setIssueStatus(issueObject.status);
-    }
-    if (issueObject.title !== undefined) {
-      setIssueTitle(issueObject.title);
-    }
-    setInputValue(issueObject.title);
-  }, [issueObject]);
+  const iconName = issueStatus === 'OPEN' ? 'alertCircle' : 'archive';
+  const iconStyle = issueStatus === 'OPEN' ? 'solid' : 'outline';
+  const tagText = issueStatus === 'OPEN' ? OPENED_ISSUE : CLOSED_ISSUE;
+  const btnText = issueStatus === 'OPEN' ? ISSUE_CLOSE : ISSUE_OPEN;
 
   const onEditTitleBtn = () => {
     setOnClickEditTitle(true);
@@ -70,26 +50,16 @@ export const DetailHeader = ({}) => {
   };
 
   const handleEditStatusBtnOnClick = () => {
-    const newStatus = issueStatus === 'open' ? 'close' : 'open';
+    const newStatus = issueStatus === 'OPEN' ? 'CLOSE' : 'OPEN';
     setIssueStatus(newStatus);
+    patchIssueStatus(issueId, newStatus);
   };
-
-  useEffect(() => {
-    if (issueStatus !== null) {
-      patchIssueStatus(issueId, issueStatus);
-    }
-  }, [issueStatus]);
 
   const handleEditTitleBtnOnClick = () => {
     setIssueTitle(inputValue);
     setOnClickEditTitle(false);
+    patchIssueTitle(issueId, inputValue);
   };
-
-  useEffect(() => {
-    if (issueTitle !== null) {
-      patchIssueTitle(issueId, issueTitle);
-    }
-  }, [issueTitle]);
 
   return (
     <div className={headerClassNames}>

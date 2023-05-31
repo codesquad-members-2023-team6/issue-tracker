@@ -1,11 +1,9 @@
 .element {
   display: flex;
   flex-direction: column;
-  width: 958px;
   height: 125px;
   border: 1px solid var(--color-light-neutral-border);
   border-radius: 16px;
-  margin-top: 24px;
 }
 
 .title {

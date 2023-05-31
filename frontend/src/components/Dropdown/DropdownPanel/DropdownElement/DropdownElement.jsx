@@ -8,7 +8,7 @@ export const DropdownElement = ({
   type,
   contents,
   isSelected,
-  profile,
+  profileImageUrl,
   hasRadioBtn,
   _onClick,
 }) => {
@@ -25,7 +25,7 @@ export const DropdownElement = ({
     <div className={headerClassNames}>{contents}</div>
   ) : (
     <button onClick={_onClick} id={id} className={optionClassNames}>
-      {profile && <Profile url={profile}></Profile>}
+      {profileImageUrl && <Profile url={profileImageUrl}></Profile>}
       <label htmlFor={id}>{contents}</label>
       {hasRadioBtn && <Icon name={iconName}></Icon>}
     </button>

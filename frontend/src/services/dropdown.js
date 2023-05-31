@@ -1,8 +1,8 @@
 export const convertListToOptions = (list, contentsKey) => {
   return list.map((element) => {
     const option = {};
-    if (element.profile) {
-      option.profile = element.profile;
+    if (element.profileImageUrl) {
+      option.profileImageUrl = element.profileImageUrl;
     }
 
     option.contents = element[contentsKey];

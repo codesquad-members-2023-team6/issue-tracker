@@ -16,7 +16,7 @@ export const handlers = [
     );
   }),
 
-  rest.get(`${URL}/issues`, (req, res, ctx) => {
+  rest.get(`${URL}/issue`, (req, res, ctx) => {
     const query = req.url.searchParams;
     const status = query.get('status');
     const page = query.get('page');
@@ -125,7 +125,7 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(labels));
   }),
 
-  rest.get(`${URL}/milestone`, (req, res, ctx) => {
+  rest.get(`${URL}/milestones`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(milestones));
   }),
 

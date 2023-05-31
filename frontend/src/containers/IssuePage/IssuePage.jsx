@@ -55,7 +55,7 @@ export const IssuePage = () => {
       const response = await getIssueList(queries);
 
       const {
-        issuesList,
+        issueList,
         labelList,
         userList,
         milestoneList,
@@ -65,7 +65,7 @@ export const IssuePage = () => {
         closeIssueMaxPage,
       } = response;
 
-      setIssueData(issuesList);
+      setIssueData(issueList);
       setLabelList([noneLabel, ...labelList]);
       setUserList(userList);
       setMilestoneList([noneMilestone, ...milestoneList]);

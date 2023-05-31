@@ -9,9 +9,6 @@ export const getIssueDetail = async ({ issueId }) => {
   const response = await customFetch({
     path: `/issue/${issueId}`,
     method: 'GET',
-    queries: {
-      issueId,
-    },
   });
 
   if (response === null) {

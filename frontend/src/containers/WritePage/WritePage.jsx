@@ -54,7 +54,7 @@ export const WritePage = () => {
   return (
     <>
       <div className={containerClassNames}>
-        <Profile url={MY_USER_DATA.profile}></Profile>
+        <Profile url={MY_USER_DATA.profileImageUrl}></Profile>
         <WriteBox
           hasTitle={true}
           titleState={[titleValue, setTitleValue]}

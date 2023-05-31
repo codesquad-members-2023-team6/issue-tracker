@@ -7,18 +7,26 @@ import { useEffect, useState } from 'react';
 import { checkValidation } from '@services/login';
 import { DOMAIN } from '@constants/routes';
 import { OAUTH_CLIENT_ID } from '@constants/login';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 export const LoginPage = () => {
   const LogoComponent = imagefiles['logoType'];
   const loginPageClassNames = `${cx('login-page')}`;
   const containerClassNames = `${cx('container')}`;
+  const navigate = useNavigate();
 
   const handleLoginBtnClick = () => {
     const scope = 'user';
     const redirectUri = `${DOMAIN}/auth`;
     const clientId = OAUTH_CLIENT_ID;
-    window.location.href = `https://github.com/login/oauth/authorize?response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}&scope=${scope}`;
+
+    if (process.env.NODE_ENV === 'production') {
+      window.location.href = `https://github.com/login/oauth/authorize?response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}&scope=${scope}`;
+    } else {
+      localStorage.setItem('loginToken', 'test');
+      navigate('/');
+    }
   };
   const logoHeight = 40;
 

@@ -1,5 +1,10 @@
 .issue-detail-page {
 }
 
-/* .detail-body {
-} */
+.detail-body {
+  display: grid;
+  grid-template-columns: 1fr 288px;
+  gap: 24px;
+  align-items: start;
+  margin-top: 24px;
+}

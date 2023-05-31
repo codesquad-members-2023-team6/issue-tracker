@@ -14,3 +14,9 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
+.button.disable:hover,
+.button.disable:focus {
+  opacity: 1;
+  cursor: default;
+}

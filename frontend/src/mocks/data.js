@@ -6,19 +6,19 @@ export const members = [
   },
   {
     id: 'sarang_daddy',
-    profile: 'https://avatars.githubusercontent.com/u/109648042?v=4',
+    profileImageUrl: 'https://avatars.githubusercontent.com/u/109648042?v=4',
     name: '사랑대디',
     index: 2,
   },
   {
     id: 'lvalentine6',
-    profile: 'https://avatars.githubusercontent.com/u/77956808?v=4',
+    profileImageUrl: 'https://avatars.githubusercontent.com/u/77956808?v=4',
     name: '로이',
     index: 3,
   },
   {
     id: 'new-pow',
-    profile: 'https://avatars.githubusercontent.com/u/103120173?v=4',
+    profileImageUrl: 'https://avatars.githubusercontent.com/u/103120173?v=4',
     name: '이린',
     index: 4,
   },

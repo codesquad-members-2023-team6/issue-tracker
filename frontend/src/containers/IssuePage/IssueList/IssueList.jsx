@@ -35,7 +35,7 @@ export const IssueList = ({
             const timeStamp = issue.createdAt;
             const writer = issue.writer.name;
             const milesStone = issue.milestone;
-            const profile = issue.writer.profile;
+            const profileImageUrl = issue.writer.profileImageUrl;
             const iconName =
               issue.status === 'open' ? 'alertCircle' : 'archive';
 
@@ -49,7 +49,7 @@ export const IssueList = ({
                   timeStamp={timeStamp}
                   writer={writer}
                   milesStone={milesStone}
-                  profile={profile}
+                  profileImageUrl={profileImageUrl}
                 ></IssueElement>
               </li>
             );

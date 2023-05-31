@@ -1,31 +1,22 @@
+import { CommentElement } from '@containers/index';
 import styles from './DetailBody.module.css';
 import classNames from 'classnames/bind';
-import { CommentElement } from '@containers/index';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getIssueDetail } from '@src/services/issue';
+import { useEffect } from 'react';
 
-export const DetailBody = ({}) => {
-  const params = useParams();
-
-  const [issueObject, setIssueObject] = useState({});
+export const DetailBody = ({ writer, comment }) => {
+  const cx = classNames.bind(styles);
 
   useEffect(() => {
-    (async () => {
-      const issueId = params.issueId;
-      const response = await getIssueDetail({ issueId });
+    console.log(comment);
+  }, [comment]);
 
-      setIssueObject(response);
-    })();
-  }, []);
-
-  const commentList = issueObject.comment;
-  const issueWriterId = issueObject.writer?.id;
+  const commentList = comment;
+  const issueWriterId = writer?.id;
 
   const addCommentElement = () => {
     return commentList?.map((comment, index) => {
       const commentWriterId = comment?.writer.id;
-      const writerProfile = comment?.writer.profile;
+      const writerProfile = comment?.writer.profileImageUrl;
       const writerName = comment?.writer.name;
       const wroteTime = comment?.createdAt;
       const contents = comment?.contents;
@@ -45,8 +36,8 @@ export const DetailBody = ({}) => {
   };
 
   return (
-    <div className="detail-body">
-      <div className="detail-comment">
+    <div className={cx('detail-body')}>
+      <div className={cx('detail-comment')}>
         {addCommentElement()}
         <div className="add-comment"></div>
       </div>

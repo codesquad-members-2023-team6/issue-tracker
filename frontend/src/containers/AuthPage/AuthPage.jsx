@@ -12,7 +12,7 @@ export const AuthPage = () => {
       const data = await getLoginToken(queryCode);
       const token = data.token;
       window.localStorage.setItem('loginToken', token);
-      // navigate('/');
+      navigate('/');
     })();
   }, []);
 
