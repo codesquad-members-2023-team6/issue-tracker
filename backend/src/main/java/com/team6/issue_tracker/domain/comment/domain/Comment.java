@@ -40,24 +40,27 @@ public class Comment {
     @PastOrPresent
     private Instant editedAt;
 
-    private Comment(String contents, AggregateReference<Issue, @NotNull Long> issueIdx, AggregateReference<Member, @NotNull Long> createdBy) {
+    private Boolean isDeleted;
+
+    private Comment(String contents, AggregateReference<Issue, @NotNull Long> issueIdx, AggregateReference<Member, @NotNull Long> createdBy, Instant createdAt) {
         this.contents = new CommentContents(contents);
         this.issueIdx = issueIdx;
         this.createdBy = createdBy;
-        this.createdAt = Instant.now();
+        this.createdAt = createdAt;
     }
 
     @PersistenceCreator
-    public Comment(Long commentIdx, CommentContents contents, AggregateReference<Issue, @NotNull Long> issueIdx, AggregateReference<Member, @NotNull Long> createdBy, Instant createdAt, Instant editedAt) {
+    public Comment(Long commentIdx, CommentContents contents, AggregateReference<Issue, @NotNull Long> issueIdx, AggregateReference<Member, @NotNull Long> createdBy, Instant createdAt, Instant editedAt, Boolean isDeleted) {
         this.commentIdx = commentIdx;
         this.contents = contents;
         this.issueIdx = issueIdx;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.editedAt = editedAt;
+        this.isDeleted = isDeleted;
     }
 
     public static Comment newComment(String contents, Long issueIdx, Long memberIdx) {
-        return new Comment(contents, AggregateReference.to(issueIdx), AggregateReference.to(memberIdx));
+        return new Comment(contents, AggregateReference.to(issueIdx), AggregateReference.to(memberIdx), Instant.now());
     }
 }

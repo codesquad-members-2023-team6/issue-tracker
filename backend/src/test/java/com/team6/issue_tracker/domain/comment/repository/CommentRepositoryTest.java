@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -57,5 +59,30 @@ class CommentRepositoryTest {
 
         //then
         assertThat(commentRepository.count()).isEqualTo(count + 1);
+    }
+    
+    @Test
+    @DisplayName("코멘트 아이디로 코멘트를 soft delete할 수 있다.")
+    public void deleteComment() throws Exception{
+        //given
+        long commentId = 1L;
+        
+        //when
+        commentRepository.softDeleteById(commentId);
+    
+        //then
+        assertThat(commentRepository.findById(commentId).orElseThrow().getIsDeleted()).isTrue();
+    }
+    
+    @Test
+    @DisplayName("삭제된 것만 제외하고 findAll로 코멘트를 조회할 수 있다.")
+    public void softDeleteFindAll() throws Exception{
+        //given
+        List<Comment> all = commentRepository.findAll();
+
+        //when
+    
+        //then
+        assertThat(all).hasSize(17);
     }
 }

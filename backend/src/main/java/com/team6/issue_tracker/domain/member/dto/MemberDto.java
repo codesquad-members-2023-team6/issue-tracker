@@ -13,6 +13,9 @@ public class MemberDto {
     String profileImageUrl;
 
     public static MemberDto from(Member member) {
-        return new MemberDto(member.getMemberIdx(), member.getId(), member.getName(), member.getProfileImageUrl());
+        if (member!=null) {
+            return new MemberDto(member.getMemberIdx(), member.getId(), member.getName(), member.getProfileImageUrl());
+        }
+        return null;
     }
 }

@@ -39,4 +39,16 @@ public class CommentController {
         //TODO 유효성 검증
         commentService.saveComment(commentDto.toUpdatedComment(issueIdx));
     }
+
+    @Operation(
+            summary = "코멘트 삭제",
+            tags = "comment",
+            description = "사용자는 코멘트를 삭제할 수 있다."
+    )
+    @DeleteMapping("/comment/{commentIdx}")
+    public void deleteComment(@PathVariable("commentIdx") long commentIdx) {
+        //TODO 작성자 검증
+        //TODO 유효성 검증
+        commentService.deleteComment(commentIdx);
+    }
 }

@@ -74,7 +74,7 @@ class LabelRepositoryTest {
     @DisplayName("Label 삭제되지 않은 모든 label을 조회할 수 있다.")
     public void selectNotDeleted() throws Exception {
         //given
-//        Iterable<Label> allByDeleted = labelRepository.findAllNotDeleted();
+        Iterable<Label> allByDeleted = labelRepository.findAllByIsDeletedFalse();
 
         //then
 //        assertThat(allByDeleted).hasSize(1);

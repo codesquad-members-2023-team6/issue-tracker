@@ -1,14 +1,13 @@
 package com.team6.issue_tracker.domain.milestone.service;
 
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
+import com.team6.issue_tracker.domain.milestone.dto.MilestoneDetail;
 import com.team6.issue_tracker.domain.milestone.repository.MilestoneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +31,14 @@ public class MilestoneService {
         }
 
         return milestone;
+    }
+
+    public List<MilestoneDetail> getAllMilestonesWithIssueNum() {
+        return milestoneRepository.findAllMilestonesWithIssueCount().stream().map(MilestoneDetail::fromMilestone)
+                .collect(Collectors.toList());
+    }
+
+    public MilestoneDetail findByIdWithIssueCount(Long id) {
+        return MilestoneDetail.fromMilestone(milestoneRepository.findMilestoneWithIssueCount(id));
     }
 }

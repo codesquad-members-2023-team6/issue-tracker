@@ -2,7 +2,7 @@ package com.team6.issue_tracker.domain.issue.dto;
 
 import com.team6.issue_tracker.domain.issue.domain.Issue;
 import com.team6.issue_tracker.domain.issue.domain.Labeling;
-import com.team6.issue_tracker.domain.label.dto.LabelDto;
+import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.dto.MemberDto;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class CreateIssueRequest {
     private String contents;
     private MemberDto writer;
     private MemberDto assignee;
-    private List<LabelDto> labels;
+    private List<LabelSummary> labels;
     private Milestone milestone;
 
     public Issue toIssue() {

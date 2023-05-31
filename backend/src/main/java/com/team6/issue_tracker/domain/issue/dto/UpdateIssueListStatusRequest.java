@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-public class UpdateIssuesStatusRequest {
+public class UpdateIssueListStatusRequest {
     List<Long> issueIdx;
     Status status;
 }

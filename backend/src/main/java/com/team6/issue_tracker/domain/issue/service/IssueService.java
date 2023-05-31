@@ -4,16 +4,16 @@ import com.team6.issue_tracker.domain.comment.domain.Comment;
 import com.team6.issue_tracker.domain.comment.service.CommentService;
 import com.team6.issue_tracker.domain.comment.dto.CommentDto;
 import com.team6.issue_tracker.domain.issue.domain.Issue;
+import com.team6.issue_tracker.domain.milestone.dto.MilestoneDetail;
 import com.team6.issue_tracker.domain.model.Status;
 import com.team6.issue_tracker.domain.page.dto.IssueFilter;
 import com.team6.issue_tracker.domain.issue.dto.IssueDetail;
 import com.team6.issue_tracker.domain.issue.repository.IssueRepository;
 import com.team6.issue_tracker.domain.label.service.LabelService;
-import com.team6.issue_tracker.domain.label.dto.LabelDto;
+import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.service.MemberService;
 import com.team6.issue_tracker.domain.member.domain.Member;
 import com.team6.issue_tracker.domain.member.dto.MemberDto;
-import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import com.team6.issue_tracker.domain.milestone.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -60,17 +60,15 @@ public class IssueService {
         Issue issue = findIssueById(issueIdx);
 
         List<Comment> comments = commentService.getCommentsOnIssue(issueIdx);
-        Map<Long, Member> members = memberService.findMembers(issue.getWriter(), issue.getAssignee());
+        Map<Long, Member> members = findMembers(issue);
 
         Member writer = members.get(issue.getWriter().getId());
-
         Member assignee = getAssignee(members, issue);
+        MilestoneDetail milestone = getMilestone(issue);
 
-        Milestone milestone = getMilestone(issue);
-
-        List<LabelDto> labelDtoList = new ArrayList<>();
+        List<LabelSummary> labelDtoList = new ArrayList<>();
         labelService.findAllById(issue.getLabelOnIssue().values())
-                .forEach(l -> labelDtoList.add(LabelDto.of(l)));
+                .forEach(l -> labelDtoList.add(LabelSummary.of(l)));
 
         List<CommentDto> commentDtos = new ArrayList<>();
         for (Comment comment : comments) {
@@ -82,6 +80,18 @@ public class IssueService {
         return IssueDetail.toDetails(issue, MemberDto.from(writer), MemberDto.from(assignee), labelDtoList, milestone, commentDtos);
     }
 
+    private Map<Long, Member> findMembers(Issue issue) {
+        Set<Long> findList = new HashSet<>();
+
+        findList.add(issue.getWriter().getId());
+
+        if (issue.getAssignee() != null) {
+            findList.add(issue.getAssignee().getId());
+        }
+
+        return memberService.findMembers(findList);
+    }
+
     private Member getAssignee(Map<Long, Member> members, Issue issue) {
         Member assginee = null;
         if (issue.getAssignee() != null) {
@@ -90,10 +100,10 @@ public class IssueService {
         return assginee;
     }
 
-    private Milestone getMilestone(Issue issue) {
-        Milestone milestone = null;
+    private MilestoneDetail getMilestone(Issue issue) {
+        MilestoneDetail milestone = null;
         if (issue.getMilestone() != null) {
-            milestone =milestoneService.findById(issue.getMilestone().getId());
+            milestone =milestoneService.findByIdWithIssueCount(issue.getMilestone().getId());
         }
         return milestone;
     }
