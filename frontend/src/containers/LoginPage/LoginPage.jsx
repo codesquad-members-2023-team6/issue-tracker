@@ -24,7 +24,10 @@ export const LoginPage = () => {
     if (process.env.NODE_ENV === 'production') {
       window.location.href = `https://github.com/login/oauth/authorize?response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}&scope=${scope}`;
     } else {
-      localStorage.setItem('loginToken', 'test');
+      localStorage.setItem(
+        'loginToken',
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnaXRodWJfbG9naW5fbWVtYmVyIiwiZXhwIjoxNjg1NTU2MjUzLCJ1c2VycHJvZmlsZSI6eyJsb2dpbiI6InJlYWxzbm9vcHNvIiwiYXZhdGFyX3VybCI6Imh0dHBzOi8vYXZhdGFycy5naXRodWJ1c2VyY29udGVudC5jb20vdS85NjM4MTIyMT92PTQiLCJpZCI6OTYzODEyMjF9fQ.ZYXap4sraFYLD6jp42xPEiHtXU-fc7qDcIBDnHfJvU8'
+      );
       navigate('/');
     }
   };

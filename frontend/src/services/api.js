@@ -7,7 +7,7 @@ export const customFetch = async ({
   method,
   body,
   queries,
-  hasAuth = false,
+  hasAuth = true,
 }) => {
   const cache = hasAuth ? 'no-store' : 'max-age=3600, private';
   const headers = {

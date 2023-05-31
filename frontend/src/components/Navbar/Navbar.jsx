@@ -37,7 +37,7 @@ export const Navbar = ({ user = { profile: false } }) => {
         ></LogoComponent>
 
         <Dropdown
-          btnComponent={<Profile url={user.profile}></Profile>}
+          btnComponent={<Profile url={user.profileImageUrl}></Profile>}
           options={[{ index: 0, contents: '로그아웃' }]}
           toggleOpen={handleProfileOpen}
           isOpen={profileOpen}
