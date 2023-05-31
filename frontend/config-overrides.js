@@ -12,7 +12,6 @@ module.exports = function override(config, env) {
     '@stores': path.resolve(__dirname, 'src/stores'),
     '@constants': path.resolve(__dirname, 'src/constants'),
     '@styles': path.resolve(__dirname, 'src/styles'),
-    '@utils': path.resolve(__dirname, 'src/utils'),
   };
 
   return config;
