@@ -1,12 +1,21 @@
 import { Layout } from '@components/index';
-import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  BrowserRouter,
+  useNavigate,
+} from 'react-router-dom';
 import { routes } from '@constants/routes';
 import { getToken } from '@services/login';
+import { removeToken } from '@services/login';
 
 const RequireAuth = ({ children }) => {
+  const navigate = useNavigate();
   const token = getToken();
   if (!token) {
-    alert('로그인이 만료되었습니다. 로그인 페이지로 이동합니다.');
+    removeToken();
+
     return <Navigate to="/login" replace />;
   }
   return children;

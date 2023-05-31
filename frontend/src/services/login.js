@@ -1,8 +1,12 @@
 import { customFetch } from './api';
 
 export const logout = (navigate) => {
-  window.localStorage.removeItem('loginToken');
+  removeToken();
   navigate('/login');
+};
+
+export const removeToken = () => {
+  window.localStorage.removeItem('loginToken');
 };
 
 const checkIsLengthValid = (input, min, max) => {
