@@ -43,6 +43,7 @@ public class GithubLoginController {
         }
 
         log.debug("githubAccessTokenRequest = {}", githubAccessTokenRequest);
+        GithubAccessToken githubAccessToken = oAuthServices.requestAccessToken(githubAccessTokenRequest);
         GithubUser githubUser = oAuthServices.requestUserInfo(githubAccessToken);
 
         // 맴버 등록 및 업데이트
