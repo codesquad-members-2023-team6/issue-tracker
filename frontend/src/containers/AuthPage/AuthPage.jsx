@@ -13,7 +13,7 @@ export const AuthPage = () => {
       if (!data) return;
       const token = data.token;
       window.localStorage.setItem('loginToken', token);
-      navigate('/');
+      // navigate('/');
     })();
   }, []);
 
