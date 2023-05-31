@@ -22,7 +22,9 @@ public class MemberService {
     }
 
     public void join(Member member) {
-        memberRepository.save(member);
+        if (!memberRepository.existsById(member.getId())) {
+            memberRepository.save(member);
+        }
     }
 
     public Member findById(Long index) {

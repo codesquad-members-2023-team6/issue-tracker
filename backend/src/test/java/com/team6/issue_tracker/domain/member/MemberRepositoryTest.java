@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Slf4j
 @Transactional
@@ -51,5 +52,19 @@ class MemberRepositoryTest {
     public void findAll() throws Exception {
         Iterable<Member> all = memberRepository.findAll();
         assertThat(all).hasSizeGreaterThan(1);
+    }
+
+    @Test
+    @DisplayName("맴버 아이디로 존재하는 맴버를 확인할 수 있다.")
+    void existsById() throws Exception {
+        Member testMember = Member.newMember("new-pow", "1234", "https://avatars.githubusercontent.com/u/103120173?v=4");
+        assertThat(memberRepository.existsById(testMember.getId())).isTrue();
+    }
+
+    @Test
+    @DisplayName("맴버 아이디로 존재하지 않는 맴버를 확인할 수 있다.")
+    void notExistsById() throws Exception {
+        Member testMember = Member.newMember("testId", "테스트맨", "www.goo.com");
+        assertThat(memberRepository.existsById(testMember.getId())).isFalse();
     }
 }
