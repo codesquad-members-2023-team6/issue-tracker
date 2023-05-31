@@ -1,5 +1,11 @@
 export const convertListToOptions = (list, contentsKey) => {
   return list.map((element) => {
+    const index =
+      element.milestoneIdx ??
+      element.labelIdx ??
+      element.memberIdx ??
+      element.index;
+
     const option = {};
     if (element.profileImageUrl) {
       option.profileImageUrl = element.profileImageUrl;
@@ -7,11 +13,12 @@ export const convertListToOptions = (list, contentsKey) => {
 
     option.contents = element[contentsKey];
 
-    if (element.index === parseInt(-1)) {
-      option.index = element.index;
+    if (index === parseInt(-1)) {
+      option.index = index;
     }
 
-    option.index = element.index;
+    option.index = index;
+
     return option;
   });
 };
