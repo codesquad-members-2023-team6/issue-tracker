@@ -7,14 +7,18 @@ export const AuthPage = () => {
   const navigate = useNavigate();
   const queryCode = new URLSearchParams(location.search).get('code');
 
-  useEffect(() => {
-    (async () => {
+  const runGetLoginTokenAPI = async () => {
+    try {
       const data = await getLoginToken(queryCode);
+      if (!data) throw Error('Fail to get loginToken');
       const token = data.token;
       window.localStorage.setItem('loginToken', token);
-      // navigate('/');
-    })();
-  }, []);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  runGetLoginTokenAPI();
 
   return <></>;
 };
