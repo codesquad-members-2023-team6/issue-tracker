@@ -13,6 +13,7 @@ export const AuthPage = () => {
       if (!data) throw Error('Fail to get loginToken');
       const token = data.token;
       window.localStorage.setItem('loginToken', token);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
