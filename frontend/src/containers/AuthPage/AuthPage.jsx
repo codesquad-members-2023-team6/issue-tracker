@@ -10,7 +10,6 @@ export const AuthPage = () => {
   useEffect(() => {
     (async () => {
       const data = await getLoginToken(queryCode);
-      if (!data) return;
       const token = data.token;
       window.localStorage.setItem('loginToken', token);
       // navigate('/');
