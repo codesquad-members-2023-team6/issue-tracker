@@ -22,21 +22,19 @@ export const checkValidation = (target, value) => {
 
 export const getToken = () => {
   const value = window.localStorage.getItem('loginToken');
-  if (value === 'undefined') return null;
   return value;
 };
 
 export const getLoginToken = async (queryCode) => {
   const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 
-  try {
-    const data = await customFetch({
-      path: '/oauth/result',
-      method: 'GET',
-      queries: { code: queryCode, env },
-    });
-    return data;
-  } catch (error) {
-    return error;
-  }
+  const data = await customFetch({
+    path: '/oauth/result',
+    method: 'GET',
+    queries: { code: queryCode, env },
+    hasAuth: false,
+  });
+
+  console.log(data);
+  return data;
 };

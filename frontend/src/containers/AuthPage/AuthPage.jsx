@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getLoginToken } from '@services/login';
+import { getLoginToken, removeToken } from '@services/login';
 import { useEffect } from 'react';
 
 export const AuthPage = () => {
@@ -10,11 +10,17 @@ export const AuthPage = () => {
   const runGetLoginTokenAPI = async () => {
     try {
       const data = await getLoginToken(queryCode);
-      if (!data) throw Error('Fail to get loginToken');
       const token = data.token;
+      if (!token) {
+        throw Error('로그인 실패');
+      }
+
       window.localStorage.setItem('loginToken', token);
-      // navigate('/');
+      navigate('/');
     } catch (error) {
+      alert(error);
+      removeToken();
+      navigate('/login');
       console.error(error);
     }
   };
