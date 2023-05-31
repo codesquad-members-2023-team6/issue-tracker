@@ -36,9 +36,9 @@ public class GithubLoginController {
         log.info("[OAuth called]");
         log.info("code = {} env = {}", code, env);
         GithubAccessTokenRequest githubAccessTokenRequest = null;
-        if (env.equalsIgnoreCase(ENV_DEV)) {
+        if (env.equals(ENV_DEV)) {
             githubAccessTokenRequest = new GithubAccessTokenRequest(githubOAuthPropertiesDev, code);
-        } else if (env.equalsIgnoreCase(ENV_PROD)) {
+        } else if (env.equals(ENV_PROD)) {
             githubAccessTokenRequest = new GithubAccessTokenRequest(githubOAuthPropertiesProd, code);
         }
 
