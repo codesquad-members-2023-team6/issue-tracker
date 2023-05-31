@@ -33,7 +33,7 @@ public class IssueController {
             description = "사용자는 새로운 이슈를 작성할 수 있다."
     )
     @PostMapping("/issue")
-    public void postNewIssue(CreateIssueRequest request) {
+    public void postNewIssue(@RequestBody CreateIssueRequest request) {
         //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueService.saveIssue(request.toIssue());
@@ -73,6 +73,18 @@ public class IssueController {
         //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueUpdateService.updateIssueTitle(issueIdx, request.getTitle());
+    }
+
+    @Operation(
+            summary = "이슈 담당자 수정",
+            tags = "issue",
+            description = "사용자는 이슈 담당자만 수정할 수 있다."
+    )
+    @PatchMapping("/issue/{issueIdx}/assignee")
+    public void updateIssuesAssignee(@RequestBody UpdateIssueAssigneeRequest request, @PathVariable("issueIdx") long issueIdx) {
+        //TODO 유저 권한 검사
+        //TODO 유효성 검사
+        issueUpdateService.updateIssueAssignee(issueIdx, request.getAssigneeIdx());
     }
 
     @Operation(

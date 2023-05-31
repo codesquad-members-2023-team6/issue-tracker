@@ -7,7 +7,6 @@ import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.domain.Member;
 import com.team6.issue_tracker.domain.member.dto.MemberDto;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
-import com.team6.issue_tracker.domain.milestone.domain.MilestoneWithIssueCount;
 import com.team6.issue_tracker.domain.milestone.dto.MilestoneDetail;
 import com.team6.issue_tracker.domain.model.Status;
 import lombok.AllArgsConstructor;
@@ -17,9 +16,8 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 @Data
@@ -74,14 +72,14 @@ public class IssueDetail {
 
     private AggregateReference<Milestone, Long> nullableMilestone(MilestoneDetail milestone) {
         if (milestone != null) {
-            return AggregateReference.to(milestone.getIndex());
+            return AggregateReference.to(milestone.getMilestoneIdx());
         }
         return null;
     }
 
-    private Map<Long, Labeling> getLabelOnIssue(List<LabelSummary> labelList) {
-        Map<Long, Labeling> labelingMap = new HashMap<>();
-        labelList.forEach(l -> labelingMap.put(l.getLabelIdx(), new Labeling(l.getLabelIdx())));
+    private List<Labeling> getLabelOnIssue(List<LabelSummary> labelList) {
+        List<Labeling> labelingMap = new ArrayList<>();
+        labelList.forEach(l -> labelingMap.add(new Labeling(l.getLabelIdx())));
         return labelingMap;
     }
 

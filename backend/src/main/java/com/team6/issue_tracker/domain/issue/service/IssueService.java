@@ -67,7 +67,7 @@ public class IssueService {
         MilestoneDetail milestone = getMilestone(issue);
 
         List<LabelSummary> labelDtoList = new ArrayList<>();
-        labelService.findAllById(issue.getLabelOnIssue().values())
+        labelService.findAllById(issue.getLabelOnIssue())
                 .forEach(l -> labelDtoList.add(LabelSummary.of(l)));
 
         List<CommentDto> commentDtos = new ArrayList<>();

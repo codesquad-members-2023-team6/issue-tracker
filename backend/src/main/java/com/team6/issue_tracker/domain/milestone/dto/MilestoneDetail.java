@@ -10,7 +10,7 @@ import java.time.Instant;
 @Getter
 @Builder
 public class MilestoneDetail {
-    private Long index;
+    private Long milestoneIdx;
     private String title;
     private String contents;
     private Status status;
@@ -20,7 +20,7 @@ public class MilestoneDetail {
 
     public static MilestoneDetail fromMilestone(MilestoneWithIssueCount milestoneDetail) {
         return MilestoneDetail.builder()
-                .index(milestoneDetail.getMilestoneIdx())
+                .milestoneIdx(milestoneDetail.getMilestoneIdx())
                 .title(milestoneDetail.getTitle())
                 .contents(milestoneDetail.getContents())
                 .status(Status.of(milestoneDetail.getIsOpen()))

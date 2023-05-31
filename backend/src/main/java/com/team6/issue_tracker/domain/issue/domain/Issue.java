@@ -17,7 +17,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -41,9 +43,12 @@ public class Issue {
     private AggregateReference<Milestone, @NotNull Long> milestone;
 
     @Valid
-    @MappedCollection(idColumn = "issue_idx", keyColumn = "labeling_idx")
+    @MappedCollection(
+            idColumn = "issue_idx",
+            keyColumn = "labeling_idx"
+    )
     @Builder.Default
-    private Map<Long, Labeling> labelOnIssue = new HashMap<>();
+    private List<Labeling> labelOnIssue = new ArrayList<>();
 
     @NotNull
     @CreatedDate

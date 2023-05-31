@@ -67,7 +67,7 @@ public class PageService {
     }
 
     private List<LabelSummary> getLabelList(Map<Long, LabelSummary> labels, Issue issue) {
-        return issue.getLabelOnIssue().values()
+        return issue.getLabelOnIssue()
                         .stream()
                         .map(e -> labels.get(e.getLabelIdx()))
                         .collect(Collectors.toList());
