@@ -27,4 +27,8 @@ public class IssueUpdateService {
     public boolean updateIssueStatus(Long index, Status status) {
         return issueRepository.updateIssueIsOpen(status == Status.OPEN, index);
     }
+
+    public boolean updateIssueTitle(Long issueIdx, String title) {
+        return issueRepository.updateIssueTitle(title, issueIdx);
+    }
 }

@@ -25,4 +25,8 @@ public interface IssueRepository extends PagingAndSortingRepository<Issue, Long>
     @Modifying
     @Query("UPDATE issue SET is_open = :isOpen WHERE issue_idx = :issueIdx")
     boolean updateIssueIsOpen(@Param("isOpen") boolean isOpen, @Param("issueIdx") long index);
+
+    @Modifying
+    @Query("UPDATE issue SET title = :title WHERE issue_idx = :issueIdx")
+    boolean updateIssueTitle(@Param("title") String title, @Param("issueIdx") Long issueIdx);
 }

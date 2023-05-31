@@ -1,10 +1,7 @@
 package com.team6.issue_tracker.domain.issue.controller;
 
 import com.team6.issue_tracker.domain.issue.domain.Issue;
-import com.team6.issue_tracker.domain.issue.dto.CreateIssueRequest;
-import com.team6.issue_tracker.domain.issue.dto.IssueDetail;
-import com.team6.issue_tracker.domain.issue.dto.UpdateIssueListStatusRequest;
-import com.team6.issue_tracker.domain.issue.dto.UpdateIssueStatusRequest;
+import com.team6.issue_tracker.domain.issue.dto.*;
 import com.team6.issue_tracker.domain.issue.service.IssueService;
 import com.team6.issue_tracker.domain.issue.service.IssueUpdateService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,6 +61,18 @@ public class IssueController {
         //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueUpdateService.updateIssueStatus(issueIdx, request.getStatus());
+    }
+
+    @Operation(
+            summary = "이슈 제목 수정",
+            tags = "issue",
+            description = "사용자는 이슈 제목만 수정할 수 있다."
+    )
+    @PatchMapping("/issue/{issueIdx}/title")
+    public void updateIssuesTitle(@RequestBody UpdateIssueTitleRequest request, @PathVariable("issueIdx") long issueIdx) {
+        //TODO 유저 권한 검사
+        //TODO 유효성 검사
+        issueUpdateService.updateIssueTitle(issueIdx, request.getTitle());
     }
 
     @Operation(

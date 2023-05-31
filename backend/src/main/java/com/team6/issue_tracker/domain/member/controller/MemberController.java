@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class MemberController {
 
     @Operation(
             summary = "멤버 목록",
-            tags = "members",
+            tags = "member",
             description = "사용자는 회원 목록을 볼 수 있다."
     )
     @GetMapping("/members")
