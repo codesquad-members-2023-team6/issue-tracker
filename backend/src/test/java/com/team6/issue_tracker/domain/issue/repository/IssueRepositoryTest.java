@@ -89,7 +89,7 @@ class IssueRepositoryTest {
                 .createdAt(Instant.now())
                 .isOpen(true)
                 .isDeleted(false)
-                .labelOnIssue(Map.of(1L, new Labeling(1L)))
+//                .labelOnIssue(Map.of(1L, new Labeling(1L)))
                 .build();
 
         Issue save = issueRepository.save(newIssue);
