@@ -65,7 +65,7 @@ public class JwtService {
 
     public boolean validateToken(String token) {
         try {
-            log.info("유효토큰 예외 검증 시작 : " + token);
+            log.info("유효 토큰 예외 검증 시작 : " + token);
             Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJwt(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {

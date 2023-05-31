@@ -25,10 +25,11 @@ public class JwtFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        log.info("1. 요청 헤더 : " + httpServletRequest.getHeader(AUTHORIZATION_HEADER));
         String jwt = resolveToken(httpServletRequest);
-        log.info("필터 jwt 확인 : " + jwt);
+        log.info("3. 분해 jwt 확인 : " + jwt);
         String responseURI = httpServletRequest.getRequestURI();
-        log.info("응답uri 확인 : " + responseURI);
+        log.info("4. 응답uri 확인 : " + responseURI);
         if(StringUtils.hasText(jwt) && jwtService.validateToken(jwt)) {
             Authentication authentication = jwtService.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -41,6 +42,7 @@ public class JwtFilter extends GenericFilterBean {
 
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+        log.info("2. 토큰 분해 : " + bearerToken);
         if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(START_TOKEN);
         }
