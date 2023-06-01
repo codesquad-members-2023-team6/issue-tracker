@@ -34,7 +34,9 @@ public class JwtFilter extends GenericFilterBean {
             log.info("5. 인증 정보 저장 시작");
             Authentication authentication = jwtService.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            log.info("6. Security에 인증 정보 저장 완료 : " + authentication.getName() + responseURI);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            log.info("6. Security에 인증 정보 저장 완료 : " + authentication.getName());
+            log.info("현재 저장된 인증 정보 목록 : " + auth);
         } else {
             log.info("유효한 토큰이 없습니다. : " + responseURI);
         }

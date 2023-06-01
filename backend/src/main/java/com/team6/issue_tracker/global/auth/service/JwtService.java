@@ -29,7 +29,7 @@ public class JwtService {
 
     public String createToken(MemberDetail user) {
         return Jwts.builder()
-                .setSubject("github_login_member")
+                .setSubject(user.getName())
                 .setHeaderParam("typ", "JWT")
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
                 .claim("userprofile", user)
@@ -54,6 +54,8 @@ public class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+
+        log.info("클레임 확인 : " + claims.get("userprofile"));
 
         Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get("userprofile").toString().split(","))
