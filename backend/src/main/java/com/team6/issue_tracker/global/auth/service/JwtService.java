@@ -67,7 +67,7 @@ public class JwtService {
         try {
             log.info("유효 토큰 예외 검증 시작 : " + token);
             log.info("유효 시크릿 예외 검증 시작 : " + secret);
-            Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJwt(token);
+            Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.info("잘못된 서명입니다.");
