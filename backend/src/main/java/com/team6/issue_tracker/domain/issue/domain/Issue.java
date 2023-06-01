@@ -5,6 +5,7 @@ import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -14,13 +15,12 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Builder
@@ -31,7 +31,9 @@ public class Issue {
 
     @Id
     private Long issueIdx;
+
     @NotNull
+    @NotBlank
     private String title;
     private String contents;
     private Boolean isOpen;
@@ -44,10 +46,7 @@ public class Issue {
     private AggregateReference<Milestone, @NotNull Long> milestone;
 
     @Valid
-    @MappedCollection(
-            idColumn = "issue_idx",
-            keyColumn = "labeling_idx"
-    )
+    @MappedCollection(idColumn = "issue_idx", keyColumn = "labeling_idx")
     @Builder.Default
     private List<Labeling> labelOnIssue = new ArrayList<>();
 
