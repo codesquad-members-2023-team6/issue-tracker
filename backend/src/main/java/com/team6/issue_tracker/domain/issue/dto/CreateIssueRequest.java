@@ -39,8 +39,10 @@ public class CreateIssueRequest {
 
     private List<Labeling> getLabelingMap (List<LabelSummary> labels) {
         List<Labeling> labelings= new ArrayList<>();
-        labels.stream().map(e -> new Labeling(e.getLabelIdx()))
-                .forEach(labelings::add);
+        if (!labels.isEmpty()) {
+            labels.stream().map(e -> new Labeling(e.getLabelIdx()))
+                    .forEach(labelings::add);
+        }
         return labelings;
     }
 
