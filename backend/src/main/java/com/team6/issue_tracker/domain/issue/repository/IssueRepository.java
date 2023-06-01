@@ -19,8 +19,8 @@ public interface IssueRepository extends PagingAndSortingRepository<Issue, Long>
     Page<Issue> findAllByIsOpenAndIsDeleted(boolean isOpen, boolean isDeleted, Pageable pageable);
 
     @Modifying
-    @Query("UPDATE issue SET is_open = :status WHERE issue_idx IN (:issue_idx)")
-    boolean updateIssuesIsOpen (@Param("status") boolean isOpen, @Param("issue_idx") List<Long> idx);
+    @Query("UPDATE issue SET is_open = :isOpen WHERE issue_idx IN (:issueIdx)")
+    boolean updateIssuesIsOpen (@Param("isOpen") boolean isOpen, @Param("issueIdx") List<Long> idx);
 
     @Modifying
     @Query("UPDATE issue SET is_open = :isOpen WHERE issue_idx = :issueIdx")

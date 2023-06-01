@@ -22,6 +22,7 @@ public class IssueUpdateService {
     }
 
     public boolean updateIssueListStatus(List<Long> issueIdx, Status status) {
+        log.info("issueidx = {}, status = {}", issueIdx, status);
         return issueRepository.updateIssuesIsOpen(status == Status.OPEN, issueIdx);
     }
 
