@@ -13,8 +13,8 @@ public class MemberProvider {
     public Member toMemberEntity(GithubUser githubUser, GithubAccessToken githubAccessToken) {
         return Member.builder()
                 .memberIdx(null)
-                .id(githubUser.getLogin())
-                .name(String.valueOf(githubUser.getId()))
+                .id(String.valueOf(githubUser.getId()))
+                .name(githubUser.getLogin())
                 .profileImageUrl(githubUser.getAvatarUrl())
                 .accessToken(githubAccessToken.getAccessToken())
                 .createdAt(Instant.now())

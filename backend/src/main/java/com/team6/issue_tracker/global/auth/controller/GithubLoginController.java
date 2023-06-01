@@ -51,10 +51,10 @@ public class GithubLoginController {
 
         // 맴버 등록 및 업데이트
         Member createdMember = memberProvider.toMemberEntity(githubUser, githubAccessToken);
-        Member member = memberService.join(createdMember);
+        Member joinedMember = memberService.join(createdMember);
 
         //토큰 jwt 처리
-        String jwtToken = jwtService.createToken(MemberDetail.from(member));
+        String jwtToken = jwtService.createToken(MemberDetail.from(joinedMember));
         // header, body에 토큰 넣고 반환
         return jwtService.createResponse(jwtToken);
     }
