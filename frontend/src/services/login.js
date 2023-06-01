@@ -35,6 +35,5 @@ export const getLoginToken = async (queryCode) => {
     hasAuth: false,
   });
 
-  console.log(data);
   return data;
 };

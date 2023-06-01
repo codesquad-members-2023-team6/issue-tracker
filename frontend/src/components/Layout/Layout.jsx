@@ -17,7 +17,7 @@ export const Layout = ({ children, hideNavbar }) => {
 
   return (
     <>
-      {!hideNavbar && <Navbar user={MY_USER_DATA}></Navbar>}
+      {!hideNavbar && <Navbar></Navbar>}
       <div className={contentsClassNames} style={contentsInlineStyles}>
         {children}
       </div>

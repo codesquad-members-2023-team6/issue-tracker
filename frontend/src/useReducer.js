@@ -1,5 +1,3 @@
-import { useReducer } from 'react';
-
 const initialState = { count: 0 };
 
 function reducer(state, action) {
@@ -13,7 +11,7 @@ function reducer(state, action) {
   }
 }
 
-export function Test() {
+function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>

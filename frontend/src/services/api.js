@@ -34,19 +34,21 @@ export const customFetch = async ({
   }
 
   try {
-    const data = await fetch(url, {
+    const res = await fetch(url, {
       method,
       headers,
       body: JSON.stringify(body),
     });
-    if (!data.ok) {
-      throw Error(data.statusText);
+
+    const result = await res.json();
+
+    if (!result.status) {
+      console.log(result.message);
     }
-    const result = await data.json();
-    if (!result) {
-      throw Error('No data');
-    }
-    return result;
+
+    const data = result.data;
+
+    return data;
   } catch (error) {
     console.error(error);
     throw error;

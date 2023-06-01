@@ -31,11 +31,19 @@ export const IssueDetailPage = () => {
   useEffect(() => {
     setSelectedAssignee(issueDetail?.assignee);
     setSelectedLabel(issueDetail?.labelList?.[0]);
-    setSelectedMilstone(issueDetail?.milestoneList?.[0]);
+    setSelectedMilstone(issueDetail?.milestone);
   }, [issueDetail]);
 
   const getDetailDatasByComponent = (issueDetail, componentName) => {
-    const { index, status, createdAt, writer, commentList } = issueDetail;
+    const {
+      index,
+      status,
+      createdAt,
+      writer,
+      commentList,
+      contents,
+      milestone,
+    } = issueDetail;
     if (componentName === 'header') {
       return {
         index,
@@ -46,7 +54,20 @@ export const IssueDetailPage = () => {
       };
     }
     if (componentName === 'body') {
-      return { writer, comment: commentList };
+      const writersComment = {
+        commentIdx: -1,
+        contents,
+        writer,
+        createdAt,
+        editedAt: null,
+      };
+
+      return {
+        writer,
+        comment: [writersComment, ...commentList],
+        contents,
+        milestone,
+      };
     }
   };
   return (
