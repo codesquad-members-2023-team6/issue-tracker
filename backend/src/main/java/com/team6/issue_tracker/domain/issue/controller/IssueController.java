@@ -4,9 +4,11 @@ import com.team6.issue_tracker.domain.issue.domain.Issue;
 import com.team6.issue_tracker.domain.issue.dto.*;
 import com.team6.issue_tracker.domain.issue.service.IssueService;
 import com.team6.issue_tracker.domain.issue.service.IssueUpdateService;
+import com.team6.issue_tracker.domain.issue.service.IssueValidator;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -16,6 +18,11 @@ public class IssueController {
 
     private final IssueService issueService;
     private final IssueUpdateService issueUpdateService;
+    private final IssueValidator issueValidator;
+
+    @InitBinder
+    public void init(WebDataBinder dataBinder) {
+    }
 
     @Operation(
             summary = "이슈 상세 보기",
@@ -34,8 +41,6 @@ public class IssueController {
     )
     @PostMapping("/issue")
     public void postNewIssue(@RequestBody CreateIssueRequest request) {
-        //TODO 유저 권한 검사
-        //TODO 유효성 검사
         issueService.saveIssue(request.toIssue());
     }
 
@@ -46,7 +51,6 @@ public class IssueController {
     )
     @PatchMapping("/issue")
     public void updateIssuesStatus(UpdateIssueListStatusRequest request) {
-        //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueUpdateService.updateIssueListStatus(request.getIssueIdx(), request.getStatus());
     }
@@ -58,7 +62,6 @@ public class IssueController {
     )
     @PatchMapping("/issue/{issueIdx}/status")
     public void updateIssuesStatus(@RequestBody UpdateIssueStatusRequest request, @PathVariable("issueIdx") long issueIdx) {
-        //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueUpdateService.updateIssueStatus(issueIdx, request.getStatus());
     }
@@ -70,7 +73,6 @@ public class IssueController {
     )
     @PatchMapping("/issue/{issueIdx}/title")
     public void updateIssuesTitle(@RequestBody UpdateIssueTitleRequest request, @PathVariable("issueIdx") long issueIdx) {
-        //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueUpdateService.updateIssueTitle(issueIdx, request.getTitle());
     }
@@ -82,7 +84,6 @@ public class IssueController {
     )
     @PatchMapping("/issue/{issueIdx}/assignee")
     public void updateIssuesAssignee(@RequestBody UpdateIssueAssigneeRequest request, @PathVariable("issueIdx") long issueIdx) {
-        //TODO 유저 권한 검사
         //TODO 유효성 검사
         issueUpdateService.updateIssueAssignee(issueIdx, request.getAssigneeIdx());
     }
@@ -94,11 +95,9 @@ public class IssueController {
     )
     @PutMapping("/issue/{issueId}")
     public void updateIssueContents(IssueDetail issueDetail) {
-        //TODO 유저 권한 검사
         //TODO 유효성 검사
         Issue updatedIssue = issueDetail.fromDto(issueDetail);
         issueUpdateService.updateIssue(updatedIssue);
     }
-
 
 }

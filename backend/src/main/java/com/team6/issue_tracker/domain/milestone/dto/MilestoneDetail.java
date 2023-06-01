@@ -2,13 +2,17 @@ package com.team6.issue_tracker.domain.milestone.dto;
 
 import com.team6.issue_tracker.domain.milestone.domain.MilestoneWithIssueCount;
 import com.team6.issue_tracker.domain.model.Status;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MilestoneDetail {
     private Long milestoneIdx;
     private String title;

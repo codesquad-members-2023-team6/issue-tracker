@@ -5,6 +5,7 @@ import com.team6.issue_tracker.domain.issue.domain.Labeling;
 import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.domain.Member;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
+import com.team6.issue_tracker.domain.milestone.dto.MilestoneDetail;
 import lombok.Data;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
@@ -18,11 +19,10 @@ public class CreateIssueRequest {
     private String contents;
     private Long writer;
     private Long assignee;
-    private List<LabelSummary> labels;
-    private Milestone milestone;
+    private List<LabelSummary> labels = new ArrayList<>();
+    private MilestoneDetail milestone;
 
     public Issue toIssue() {
-
         return Issue.builder()
                 .issueIdx(null)
                 .title(title)
@@ -39,10 +39,8 @@ public class CreateIssueRequest {
 
     private List<Labeling> getLabelingMap (List<LabelSummary> labels) {
         List<Labeling> labelings= new ArrayList<>();
-        if (!labels.isEmpty()) {
-            labels.stream().map(e -> new Labeling(e.getLabelIdx()))
+        labels.stream().map(e -> new Labeling(e.getLabelIdx()))
                     .forEach(labelings::add);
-        }
         return labelings;
     }
 
