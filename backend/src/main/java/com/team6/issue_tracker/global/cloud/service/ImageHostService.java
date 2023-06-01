@@ -1,55 +1,53 @@
 package com.team6.issue_tracker.global.cloud.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.team6.issue_tracker.global.cloud.domain.Directory;
-import com.team6.issue_tracker.global.cloud.domain.MultifileInfo;
-import com.team6.issue_tracker.global.cloud.util.MultifileToFileConvertor;
+import com.team6.issue_tracker.global.cloud.dto.FileUploadResult;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
 @Service
 public class ImageHostService {
 
-    private final String bucket;
+    @Value("${aws.s3.bucket}")
+    private String bucket;
     private final AmazonS3 amazonS3;
 
-    public ImageHostService(@Value("${aws.s3.bucket}") String bucket, AmazonS3 amazonS3) {
-        this.bucket = bucket;
+    public ImageHostService(AmazonS3 amazonS3) {
         this.amazonS3 = amazonS3;
     }
 
-    public MultifileInfo upload(MultipartFile file, Directory directory) throws IOException {
-        MultifileToFileConvertor.convert(file)
-                .orElseThrow(() -> new IllegalArgumentException("File convert Failed."));
-        return upload(file, directory);
+    public FileUploadResult upload(MultipartFile file, Directory directory) {
+
+        String originFileName = file.getOriginalFilename();
+        String uploadFileName = generateFileName(file, directory.getPrefix());
+        String url ="";
+        try {
+            url = putObjectToS3(file, uploadFileName);
+        } catch (IOException e) {
+            return FileUploadResult.fail(originFileName);
+        }
+
+        return FileUploadResult.success(originFileName, uploadFileName, url);
     }
 
-    public MultifileInfo upload(File file, Directory directory) {
-        String key = generateFileName(file, directory.getPrefix());
-        putObjectToS3(file, key);
-        file.delete();
+    private String putObjectToS3(MultipartFile file, String fileName) throws IOException {
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(file.getSize());
+        objectMetadata.setContentType(file.getContentType());
 
-        return MultifileInfo.builder()
-                .key(key)
-                .path(putObjectToS3(file, key))
-                .build();
-    }
-
-    private String putObjectToS3(File file, String fileName) {
-        amazonS3.putObject(bucket, fileName, file);
+        amazonS3.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(),objectMetadata));
         return amazonS3.getUrl(bucket, fileName).toString();
     }
 
-    private String generateFileName(File file, String prefix) {
-        return String.format("%s%s%s", prefix, UUID.randomUUID(), file.getName());
+    private String generateFileName(MultipartFile file, String prefix) {
+        return String.format("%s%s-%s", prefix, UUID.randomUUID(), file.getName());
     }
 
-    public MultifileInfo remove(MultifileInfo info) {
-        return null;
-    }
 }
