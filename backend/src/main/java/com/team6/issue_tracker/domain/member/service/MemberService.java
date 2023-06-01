@@ -26,7 +26,7 @@ public class MemberService {
         if (!memberRepository.existsById(member.getId())) {
             return memberRepository.save(member);
         }
-        throw new LoginException("로그인에 실패하였습니다.");
+        return memberRepository.findMemberById(member.getId()).orElseThrow();
     }
 
     public Member findById(Long index) {

@@ -3,6 +3,7 @@ package com.team6.issue_tracker.domain.member;
 import com.team6.issue_tracker.domain.member.domain.Member;
 import com.team6.issue_tracker.domain.member.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +67,20 @@ class MemberRepositoryTest {
     void notExistsById() throws Exception {
         Member testMember = Member.newMember("testId", "테스트맨", "www.goo.com");
         assertThat(memberRepository.existsById(testMember.getId())).isFalse();
+    }
+
+    @Test
+    @DisplayName("멤버 아이디로 멤버를 조회할 수 있다.")
+    public void findByMemberId() throws Exception{
+        //given
+        Member member = memberRepository.findMemberById("new-pow").orElseThrow();
+
+        //when
+
+        //then
+        SoftAssertions.assertSoftly(softAssertions -> {
+            softAssertions.assertThat(member).isNotNull();
+            softAssertions.assertThat(member.getName()).isEqualTo("이린");
+        });
     }
 }
