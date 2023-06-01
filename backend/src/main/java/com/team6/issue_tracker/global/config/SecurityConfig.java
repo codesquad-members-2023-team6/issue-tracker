@@ -20,11 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http    .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**",
-                        "/", "/login/**","/oauth/**",
-                        "/issue/**",/*임시 오픈 이슈*/
+                .antMatchers("/", "/login/**","/oauth/**",
+                        "/issue/**", "/**",
                         "/error", "/swagger-ui/**",
-                        "/v3/**", "auth/**").permitAll()
+                        "/v3/**", "auth/**",
+                        "/issue?status=open&page=0&maxPageNum=10").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
