@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.global.auth.domain.GithubUser;
+import com.team6.issue_tracker.global.util.ResponseMessage;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,14 +38,17 @@ public class JwtService {
                 .compact();
     }
 
-    public ResponseEntity<?> createResponse(String jwtToken) {
+    public ResponseEntity<ResponseMessage<Map<String, String>>> createResponse(String jwtToken) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + jwtToken);
 
         Map<String, String> responseBody = new HashMap<>();
         responseBody.put("message", "login success");
         responseBody.put("token", jwtToken);
-        return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+
+        ResponseMessage<Map<String, String>> responseMessage =
+                new ResponseMessage<>(HttpStatus.OK, "Login successful", responseBody);
+        return responseMessage.toResponseEntityWithHeaders(headers);
     }
 
     public Authentication getAuthentication(String token) {
