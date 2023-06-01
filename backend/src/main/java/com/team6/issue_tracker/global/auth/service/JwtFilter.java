@@ -31,9 +31,10 @@ public class JwtFilter extends GenericFilterBean {
         String responseURI = httpServletRequest.getRequestURI();
         log.info("4. 응답uri 확인 : " + responseURI);
         if(StringUtils.hasText(jwt) && jwtService.validateToken(jwt)) {
+            log.info("5. 인증 정보 저장 시작");
             Authentication authentication = jwtService.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            log.info("Security에 인증 정보 저장 완료 : " + authentication.getName() + responseURI);
+            log.info("6. Security에 인증 정보 저장 완료 : " + authentication.getName() + responseURI);
         } else {
             log.info("유효한 토큰이 없습니다. : " + responseURI);
         }
