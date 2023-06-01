@@ -2,12 +2,14 @@ package com.team6.issue_tracker.domain.label.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Builder
+@NoArgsConstructor
 @Table("label")
 public class Label {
     @Id

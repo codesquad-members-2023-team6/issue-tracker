@@ -3,6 +3,7 @@ package com.team6.issue_tracker.domain.member.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -14,6 +15,7 @@ import java.time.Instant;
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table("member")
 public class Member {
 

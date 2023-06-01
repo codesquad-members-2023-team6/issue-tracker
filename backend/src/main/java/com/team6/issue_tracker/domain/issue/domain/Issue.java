@@ -25,6 +25,7 @@ import java.util.Map;
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table("issue")
 public class Issue {
 

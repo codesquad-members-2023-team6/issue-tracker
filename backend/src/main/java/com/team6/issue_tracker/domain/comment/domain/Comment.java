@@ -2,9 +2,7 @@ package com.team6.issue_tracker.domain.comment.domain;
 
 import com.team6.issue_tracker.domain.issue.domain.Issue;
 import com.team6.issue_tracker.domain.member.domain.Member;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.relational.core.mapping.Embedded;
@@ -17,6 +15,7 @@ import java.time.Instant;
 @Getter
 @Builder
 @ToString
+@NoArgsConstructor
 @Table("comment")
 public class Comment {
 
