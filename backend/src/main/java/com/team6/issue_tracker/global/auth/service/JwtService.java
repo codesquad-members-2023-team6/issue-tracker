@@ -2,6 +2,7 @@ package com.team6.issue_tracker.global.auth.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.global.auth.domain.GithubUser;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -26,12 +27,12 @@ public class JwtService {
     private String secret;
     private static final long JWT_TOKEN_VALIDITY = 86400;
 
-    public String createToken(GithubUser githubUser) {
+    public String createToken(MemberDetail user) {
         return Jwts.builder()
                 .setSubject("github_login_member")
                 .setHeaderParam("typ", "JWT")
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .claim("userprofile", githubUser)
+                .claim("userprofile", user)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }

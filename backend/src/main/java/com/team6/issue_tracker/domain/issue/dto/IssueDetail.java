@@ -5,7 +5,7 @@ import com.team6.issue_tracker.domain.issue.domain.Issue;
 import com.team6.issue_tracker.domain.issue.domain.Labeling;
 import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.domain.Member;
-import com.team6.issue_tracker.domain.member.dto.MemberDto;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import com.team6.issue_tracker.domain.milestone.dto.MilestoneDetail;
 import com.team6.issue_tracker.domain.model.Status;
@@ -28,8 +28,8 @@ public class IssueDetail {
     private Long index;
     private String title;
     private String contents;
-    private MemberDto writer;
-    private MemberDto assignee;
+    private MemberDetail writer;
+    private MemberDetail assignee;
     private Status status;
     private Instant createdAt;
     private Instant editedAt;
@@ -37,7 +37,7 @@ public class IssueDetail {
     private List<LabelSummary> labelList;
     private List<CommentDto> commentList;
 
-    public static IssueDetail toDetails(Issue issue, MemberDto writer, MemberDto assignee,
+    public static IssueDetail toDetails(Issue issue, MemberDetail writer, MemberDetail assignee,
                                         List<LabelSummary> labels, MilestoneDetail milestone,
                                         List<CommentDto> coments) {
         return IssueDetail.builder()
@@ -83,7 +83,7 @@ public class IssueDetail {
         return labelingMap;
     }
 
-    private AggregateReference<Member, @NotNull Long> nullableMember(MemberDto m) {
+    private AggregateReference<Member, @NotNull Long> nullableMember(MemberDetail m) {
         if (m != null) {
             return AggregateReference.to(m.getMemberIdx());
         }

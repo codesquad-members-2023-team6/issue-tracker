@@ -1,6 +1,7 @@
 package com.team6.issue_tracker.global.auth.controller;
 
 import com.team6.issue_tracker.domain.member.domain.Member;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.domain.member.service.MemberProvider;
 import com.team6.issue_tracker.domain.member.service.MemberService;
 import com.team6.issue_tracker.global.auth.config.GithubOAuthPropertiesProd;
@@ -15,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.security.auth.login.LoginException;
 
 @Slf4j
 @RestController
@@ -32,7 +35,7 @@ public class GithubLoginController {
     private final JwtService jwtService;
 
     @GetMapping("/oauth/result")
-    public ResponseEntity<?> loginViaGithub(String code, String env) {
+    public ResponseEntity<?> loginViaGithub(String code, String env) throws LoginException {
         log.info("[OAuth called]");
         log.info("code = {} env = {}", code, env);
         GithubAccessTokenRequest githubAccessTokenRequest = null;
@@ -48,10 +51,10 @@ public class GithubLoginController {
 
         // 맴버 등록 및 업데이트
         Member createdMember = memberProvider.toMemberEntity(githubUser, githubAccessToken);
-        memberService.join(createdMember);
+        Member member = memberService.join(createdMember);
 
         //토큰 jwt 처리
-        String jwtToken = jwtService.createToken(githubUser);
+        String jwtToken = jwtService.createToken(MemberDetail.from(member));
         // header, body에 토큰 넣고 반환
         return jwtService.createResponse(jwtToken);
     }

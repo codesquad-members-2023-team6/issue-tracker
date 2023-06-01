@@ -8,7 +8,7 @@ import com.team6.issue_tracker.domain.page.dto.IssueFilter;
 import com.team6.issue_tracker.domain.label.service.LabelService;
 import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.service.MemberService;
-import com.team6.issue_tracker.domain.member.dto.MemberDto;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import com.team6.issue_tracker.domain.milestone.service.MilestoneService;
 import com.team6.issue_tracker.domain.page.dto.IssuePageResponse;
@@ -33,7 +33,7 @@ public class PageService {
 
     public IssuePageResponse getAPage(int page, IssueFilter filter) {
 
-        Map<Long, MemberDto> members = memberService.getAllMembers();
+        Map<Long, MemberDetail> members = memberService.getAllMembers();
         Map<Long, Milestone> milestones = milestoneService.getAllMilestones();
         Map<Long, LabelSummary> labels = labelService.getAllLabelSummaries();
 
@@ -44,8 +44,8 @@ public class PageService {
         List<IssueDto> issueDtos = new ArrayList<>();
 
         for (Issue issue : issueList) {
-            MemberDto writer = getWriter(members, issue);
-            MemberDto assignee = getAssignee(members, issue);
+            MemberDetail writer = getWriter(members, issue);
+            MemberDetail assignee = getAssignee(members, issue);
             Milestone milestone = getMilestone(milestones, issue);
             List<LabelSummary> labelList = getLabelList(labels, issue);
 
@@ -73,7 +73,7 @@ public class PageService {
                         .collect(Collectors.toList());
     }
 
-    private MemberDto getWriter(Map<Long, MemberDto> members, Issue issue) {
+    private MemberDetail getWriter(Map<Long, MemberDetail> members, Issue issue) {
         return members.get(issue.getWriter().getId());
     }
 
@@ -85,8 +85,8 @@ public class PageService {
         return milestone;
     }
 
-    private MemberDto getAssignee(Map<Long, MemberDto> members, Issue issue) {
-        MemberDto assignee = null;
+    private MemberDetail getAssignee(Map<Long, MemberDetail> members, Issue issue) {
+        MemberDetail assignee = null;
         if (issue.getAssignee() != null) {
             assignee = members.get(issue.getAssignee().getId());
         }

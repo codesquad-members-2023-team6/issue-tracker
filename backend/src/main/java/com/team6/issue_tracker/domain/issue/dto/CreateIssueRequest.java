@@ -4,23 +4,20 @@ import com.team6.issue_tracker.domain.issue.domain.Issue;
 import com.team6.issue_tracker.domain.issue.domain.Labeling;
 import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.domain.Member;
-import com.team6.issue_tracker.domain.member.dto.MemberDto;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import lombok.Data;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Data
 public class CreateIssueRequest {
     private String title;
     private String contents;
-    private MemberDto writer;
-    private MemberDto assignee;
+    private Long writer;
+    private Long assignee;
     private List<LabelSummary> labels;
     private Milestone milestone;
 
@@ -30,7 +27,7 @@ public class CreateIssueRequest {
                 .issueIdx(null)
                 .title(title)
                 .contents(contents)
-                .writer(AggregateReference.to(writer.getMemberIdx()))
+                .writer(AggregateReference.to(writer))
                 .assignee(getAssigneeRef())
                 .labelOnIssue(getLabelingMap(labels))
                 .milestone(getMilestoneRef())
@@ -49,7 +46,7 @@ public class CreateIssueRequest {
 
     private AggregateReference<Member, Long> getAssigneeRef() {
         if (assignee != null) {
-            return AggregateReference.to(assignee.getMemberIdx());
+            return AggregateReference.to(assignee);
         }
         return null;
     }

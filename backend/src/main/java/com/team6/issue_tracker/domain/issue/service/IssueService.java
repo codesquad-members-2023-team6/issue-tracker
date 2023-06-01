@@ -13,7 +13,7 @@ import com.team6.issue_tracker.domain.label.service.LabelService;
 import com.team6.issue_tracker.domain.label.dto.LabelSummary;
 import com.team6.issue_tracker.domain.member.service.MemberService;
 import com.team6.issue_tracker.domain.member.domain.Member;
-import com.team6.issue_tracker.domain.member.dto.MemberDto;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.domain.milestone.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -77,7 +77,7 @@ public class IssueService {
             commentDtos.add(dto);
         }
 
-        return IssueDetail.toDetails(issue, MemberDto.from(writer), MemberDto.from(assignee), labelDtoList, milestone, commentDtos);
+        return IssueDetail.toDetails(issue, MemberDetail.from(writer), MemberDetail.from(assignee), labelDtoList, milestone, commentDtos);
     }
 
     private Map<Long, Member> findMembers(Issue issue) {

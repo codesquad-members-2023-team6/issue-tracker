@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberDto {
+public class MemberDetail {
     Long memberIdx;
     String id;
     String name;
     String profileImageUrl;
 
-    public static MemberDto from(Member member) {
+    public static MemberDetail from(Member member) {
         if (member!=null) {
-            return new MemberDto(member.getMemberIdx(), member.getId(), member.getName(), member.getProfileImageUrl());
+            return new MemberDetail(member.getMemberIdx(), member.getId(), member.getName(), member.getProfileImageUrl());
         }
         return null;
     }

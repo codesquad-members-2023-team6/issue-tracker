@@ -3,7 +3,7 @@ package com.team6.issue_tracker.domain.comment.dto;
 import com.team6.issue_tracker.domain.comment.domain.Comment;
 import com.team6.issue_tracker.domain.comment.domain.CommentContents;
 import com.team6.issue_tracker.domain.member.domain.Member;
-import com.team6.issue_tracker.domain.member.dto.MemberDto;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class CommentDto {
 
     private Long commentIdx;
     private String contents;
-    private MemberDto writer;
+    private MemberDetail writer;
     private Instant createdAt;
     private Instant editedAt;
 
@@ -27,7 +27,7 @@ public class CommentDto {
                 .contents(comment.getContents().getContents())
                 .createdAt(comment.getCreatedAt())
                 .editedAt(comment.getEditedAt())
-                .writer(MemberDto.from(writer))
+                .writer(MemberDetail.from(writer))
                 .build();
     }
 

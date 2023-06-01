@@ -1,7 +1,7 @@
 package com.team6.issue_tracker.domain.page.dto;
 
 import com.team6.issue_tracker.domain.label.dto.LabelSummary;
-import com.team6.issue_tracker.domain.member.dto.MemberDto;
+import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.domain.milestone.domain.Milestone;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +20,6 @@ public class IssuePageResponse {
     private List<IssueDto> issueList;
     private List<LabelSummary> labelList;
     private List<Milestone> milestoneList;
-    private List<MemberDto> userList;
+    private List<MemberDetail> userList;
 
 }
