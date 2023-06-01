@@ -1,6 +1,5 @@
 package com.team6.issue_tracker.domain.milestone.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

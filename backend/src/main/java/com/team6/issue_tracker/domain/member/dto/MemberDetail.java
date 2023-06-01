@@ -2,10 +2,10 @@ package com.team6.issue_tracker.domain.member.dto;
 
 import com.team6.issue_tracker.domain.member.domain.Member;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDetail {

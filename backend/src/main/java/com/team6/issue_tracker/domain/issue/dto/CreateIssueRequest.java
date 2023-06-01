@@ -39,7 +39,7 @@ public class CreateIssueRequest {
 
     private List<Labeling> getLabelingMap (List<LabelSummary> labels) {
         List<Labeling> labelings= new ArrayList<>();
-        labels.stream().map(e -> new Labeling(e.getLabelIdx()))
+        labels.stream().map(e -> new Labeling(AggregateReference.to(e.getLabelIdx())))
                     .forEach(labelings::add);
         return labelings;
     }

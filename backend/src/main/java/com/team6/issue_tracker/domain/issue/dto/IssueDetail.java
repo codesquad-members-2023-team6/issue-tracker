@@ -79,7 +79,7 @@ public class IssueDetail {
 
     private List<Labeling> getLabelOnIssue(List<LabelSummary> labelList) {
         List<Labeling> labelingMap = new ArrayList<>();
-        labelList.forEach(l -> labelingMap.add(new Labeling(l.getLabelIdx())));
+        labelList.forEach(l -> labelingMap.add(new Labeling(AggregateReference.to(l.getLabelIdx()))));
         return labelingMap;
     }
 

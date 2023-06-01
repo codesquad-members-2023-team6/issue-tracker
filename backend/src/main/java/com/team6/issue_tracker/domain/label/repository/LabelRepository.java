@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface LabelRepository extends CrudRepository<Label, Long> {
     Iterable<Label> findAllByIsDeletedFalse();
-    Iterable<Label> findAllByLabelIdxInAndAndIsDeleted(List<Long> labelIdx, boolean isDeleted);
+    Iterable<Label> findAllByLabelIdxInAndIsDeleted(List<Long> labelIdx, boolean isDeleted);
 }
