@@ -13,6 +13,7 @@ import { StoreProvider } from './stores/StoreProvider';
 
 const RequireAuth = ({ children }) => {
   const navigate = useNavigate();
+
   const token = getToken();
   if (!token) {
     removeToken();

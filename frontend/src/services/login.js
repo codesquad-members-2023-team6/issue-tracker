@@ -22,6 +22,7 @@ export const checkValidation = (target, value) => {
 
 export const getToken = () => {
   const value = window.localStorage.getItem('loginToken');
+  if (value === 'undefined') return null;
   return value;
 };
 

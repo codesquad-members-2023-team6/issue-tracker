@@ -6,6 +6,9 @@ import styles from './WritePage.module.css';
 import { WriteBox, Sidebox } from '@components/index';
 import { postIssue } from '@services/issue';
 import { useNavigate } from 'react-router-dom';
+import { useContext, useReducer } from 'react';
+import { storeContext } from '@stores/index';
+
 const cx = classNames.bind(styles);
 
 export const WritePage = () => {
@@ -22,6 +25,7 @@ export const WritePage = () => {
   const [milestoneValue, setMilestoneValue] = useState(null);
   const [labelValue, setLabelValue] = useState(null);
   const [isCTADisabled, setIsCTADisabled] = useState(true);
+  const [user, userDispatch] = useContext(storeContext).user;
 
   const convertIndexKey = (data, key) => {
     const copiedData = { ...data, [`${key}Idx`]: data?.index };
@@ -33,9 +37,9 @@ export const WritePage = () => {
     const issue = {
       title: titleValue,
       contents: Boolean(contentsValue) ? contentsValue : null,
-      writer: MY_USER_DATA?.memberIdx,
+      writer: user?.memberIdx,
       assignee: assigneeValue?.memberIdx,
-      label: labelValue ? [convertIndexKey(labelValue, 'label')] : [],
+      labels: labelValue ? [convertIndexKey(labelValue, 'label')] : [],
       milestone: milestoneValue ? milestoneValue : null,
     };
 
@@ -60,7 +64,7 @@ export const WritePage = () => {
   return (
     <>
       <div className={containerClassNames}>
-        <Profile url={MY_USER_DATA.profileImageUrl}></Profile>
+        <Profile url={user.profileImageUrl}></Profile>
         <WriteBox
           hasTitle={true}
           titleState={[titleValue, setTitleValue]}

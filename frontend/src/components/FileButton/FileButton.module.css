@@ -1,0 +1,30 @@
+.file-container {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  height: 52px;
+  gap: 4px;
+  width: 100%;
+
+  align-items: center;
+  border-radius: 0 0 16px 16px;
+  padding: 0 16px;
+  border-top: 1px dashed var(--color-light-neutral-border);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label:hover {
+  cursor: pointer;
+}
+
+.input[type='file'] {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

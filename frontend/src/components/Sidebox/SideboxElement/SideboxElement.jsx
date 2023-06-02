@@ -75,7 +75,6 @@ export const SideboxElement = ({
   return (
     <div className={sideboxElementClassNames} style={{ ...style }}>
       <Dropdown
-        btnText={name}
         panelPosition="left"
         isOpen={isDropdownOpen}
         toggleOpen={handleDropdown(!isDropdownOpen)}

@@ -4,6 +4,8 @@ import { createContext } from 'react';
 import { removeEmptyKeyValues, deepCopy } from '@utils/index';
 
 export const filterContext = createContext();
+export const checkContext = createContext();
+export const isCheckedContext = createContext();
 
 export const getIssueDetail = async ({ issueId }) => {
   const response = await customFetch({
@@ -59,6 +61,42 @@ export const patchIssueTitle = async (issueId, inputValue) => {
       method: 'PATCH',
       body: {
         title: inputValue,
+      },
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const uploadFile = async (formData) => {
+  try {
+    const response = await fetch(`${URL}/resource`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const result = response.json();
+
+    return result;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+export const patchMultipleIssuesStatus = async (issueIds, status) => {
+  try {
+    const response = await customFetch({
+      path: '/issue',
+      method: 'PATCH',
+      body: {
+        issueIdx: issueIds,
+        status: status,
       },
     });
 
@@ -132,3 +170,21 @@ export const updateCountsToTabInfo = (
 
 export const isFilterApplied = (filters, initialFilter) =>
   JSON.stringify(filters) !== JSON.stringify(initialFilter);
+
+export const getFileData = async (selectedFile) => {
+  if (!selectedFile) {
+    alert('파일이 선택되지 않았습니다.');
+    return;
+  }
+
+  const MAX_FILE_SIZE = 104857600;
+  const isFileSizeExceed = selectedFile.size >= MAX_FILE_SIZE;
+
+  if (isFileSizeExceed) return alert('파일 크기 초과!');
+
+  const formData = new FormData();
+  formData.append('files', selectedFile, selectedFile.name);
+
+  const res = await uploadFile(formData);
+  return res.data;
+};

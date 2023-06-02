@@ -8,12 +8,20 @@ export const customFetch = async ({
   body,
   queries,
   hasAuth = true,
+  options,
 }) => {
   const cache = hasAuth ? 'no-store' : 'max-age=3600, private';
-  const headers = {
+  let headers = {
     'Content-Type': 'application/json',
     'Cache-Control': cache,
   };
+
+  if (options) {
+    headers = {
+      ...headers,
+      ...options,
+    };
+  }
 
   if (hasAuth) {
     const token = getToken();

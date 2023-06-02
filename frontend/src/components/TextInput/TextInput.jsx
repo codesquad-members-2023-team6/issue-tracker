@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './TextInput.module.css';
 import classNames from 'classnames/bind';
-import { Button, Icon } from '@components/index';
+import { Button, FileButton, Icon } from '@components/index';
 
 export const TextInput = ({
   size,
@@ -22,6 +22,7 @@ export const TextInput = ({
   errorMessage,
   hasFileUpload,
   showCaption,
+  handleFileBtnOnChange,
 }) => {
   const cx = classNames.bind(styles);
 
@@ -45,7 +46,6 @@ export const TextInput = ({
   const placeholderColor = `var(--color-light-neutral-text-weak)`;
   const bottomClassName = `${cx('bottom')}`;
   const captionClassName = `${cx('caption')} typo-s`;
-  const fileContainerClassName = `${cx('file-container')}`;
 
   return (
     <div className={container}>
@@ -88,16 +88,9 @@ export const TextInput = ({
         )}
         {hasFileUpload && (
           <div className={bottomClassName}>
-            <div className={fileContainerClassName}>
-              <Button
-                type="ghost"
-                iconName="paperclip"
-                text="파일 첨부하기"
-                btnSize="s"
-                width="fit-content"
-                style={{ padding: '0' }}
-              ></Button>
-            </div>
+            <FileButton
+              handleFileBtnOnChange={handleFileBtnOnChange}
+            ></FileButton>
           </div>
         )}
       </div>

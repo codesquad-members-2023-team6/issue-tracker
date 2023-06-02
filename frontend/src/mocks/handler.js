@@ -114,7 +114,16 @@ export const handlers = [
       (list) => parseInt(issueId) === parseInt(list.index)
     );
 
-    return res(ctx.status(200), ctx.json(list));
+    const newList = {
+      ...list,
+      labelList: [list.label],
+      milestoneList: [list.milestone],
+    };
+
+    delete newList['label'];
+    delete newList['milestone'];
+
+    return res(ctx.status(200), ctx.json(newList));
   }),
 
   rest.get(`${URL}/members`, (req, res, ctx) => {
@@ -182,5 +191,21 @@ export const handlers = [
         issue: newIssue,
       })
     );
+  }),
+
+  rest.patch(`${URL}/issue`, (req, res, ctx) => {
+    const { issueIdx, status } = req.body;
+
+    issueIdx.forEach((issueId) => {
+      const foundIssue = issueList.find(
+        (list) => parseInt(issueId) === parseInt(list.index)
+      );
+
+      if (foundIssue) {
+        foundIssue.status = status;
+      }
+    });
+
+    return res(ctx.status(200), ctx.json(status));
   }),
 ];

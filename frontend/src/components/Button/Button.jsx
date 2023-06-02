@@ -14,6 +14,7 @@ export const Button = ({
   style,
   id,
   textColor,
+  isFileBtn,
 }) => {
   const cx = classNames.bind(styles);
 
@@ -49,6 +50,7 @@ export const Button = ({
       style={{ ...style, width }}
       id={id}
       disabled={status === 'disabled'}
+      type={isFileBtn ? 'submit' : undefined}
     >
       {iconName && <Icon name={iconName} fill={typoColor}></Icon>}
       <span style={{ color: typoColor }} className={textSizeClass}>

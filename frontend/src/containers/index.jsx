@@ -12,6 +12,7 @@ import { ErrorPage } from './ErrorPage/ErrorPage';
 import { DetailUpdateTitle } from './IssueDetailPage/DetailHeader/DetailUpdateTitle/DetailUpdateTitle';
 import { WritePage } from './WritePage/WritePage';
 import { DetailTitle } from './IssueDetailPage/DetailHeader/DetailTitle/DetailTitle';
+import { IssueListCheckingHeader } from './IssuePage/IssueList/IssueListCheckingHeader/IssueListCheckingHeader';
 
 export {
   IssuePage,
@@ -28,4 +29,5 @@ export {
   DetailUpdateTitle,
   WritePage,
   DetailTitle,
+  IssueListCheckingHeader,
 };

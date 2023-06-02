@@ -10,7 +10,6 @@ export const CommentElement = ({
   wroteTime,
   contents,
 }) => {
-  // style
   const cx = classNames.bind(styles);
   const elementClassNames = `${cx('element')}`;
   const titleClassNames = `${cx('title')}`;
@@ -50,9 +49,10 @@ export const CommentElement = ({
           <Icon></Icon>
         </div>
       </div>
-      <div className={bodyClassNames}>
-        <span>{contents}ddd</span>
-      </div>
+      <div
+        className={bodyClassNames}
+        dangerouslySetInnerHTML={{ __html: contents }}
+      ></div>
     </div>
   );
 };

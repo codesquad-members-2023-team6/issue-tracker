@@ -13,6 +13,7 @@ import { Sidebox } from './Sidebox/Sidebox';
 import { TextInput } from './TextInput/TextInput';
 import { TextInputNormal } from './TextInputNormal/TextInputNormal';
 import { Progress } from './Progress/Progress';
+import { FileButton } from './FileButton/FileButton';
 
 export {
   Dropdown,
@@ -30,4 +31,5 @@ export {
   TextInput,
   TextInputNormal,
   Progress,
+  FileButton,
 };

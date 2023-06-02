@@ -11,7 +11,15 @@ export const Profile = ({ url, size = '32', _onClick }) => {
   return (
     <div onClick={_onClick} className={profileClassNames}>
       {url ? (
-        <img src={url} width={width} height={height}></img>
+        <div
+          style={{
+            width: `${width}`,
+            height: `${height}`,
+            backgroundImage: `url(${url})`,
+            backgroundSize: 'contain',
+            borderRadius: '100%',
+          }}
+        ></div>
       ) : (
         <UserDefaultImageComponent
           width={width}

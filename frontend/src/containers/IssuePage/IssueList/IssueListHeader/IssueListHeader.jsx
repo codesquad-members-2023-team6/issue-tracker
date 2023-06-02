@@ -14,6 +14,8 @@ export const IssueListHeader = ({
   assigneeList,
   issueCount,
   labelList,
+  isCheckedHeader,
+  handleHeaderCheckState,
 }) => {
   const cx = classNames.bind(styles);
 
@@ -79,17 +81,30 @@ export const IssueListHeader = ({
     const targetData = statusTabDatas.find(
       (data) => currentTarget.id === data.text
     );
+
     const filterValue = targetData.filterValue;
     const text = targetData.text;
     setFilters({ ...filters, status: filterValue });
     setActiveTab(text);
   };
 
+  useEffect(() => {
+    const currentStatus =
+      filters.status === 'open'
+        ? statusTabDatas[0].text
+        : statusTabDatas[1].text;
+    setActiveTab(currentStatus);
+  }, [isCheckedHeader]);
+
   return (
     <>
       <div className={cx(`header`)}>
         <div className={cx(`check-box`)}>
-          <input type="checkbox"></input>
+          <input
+            type="checkbox"
+            checked={isCheckedHeader}
+            onChange={handleHeaderCheckState}
+          ></input>
         </div>
         <div className={cx(`header-contents`)}>
           <Tab

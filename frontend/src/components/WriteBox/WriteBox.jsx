@@ -3,6 +3,8 @@ import styles from './WriteBox.module.css';
 import { TextInput } from '@src/components/TextInput/TextInput';
 import { debounce } from '@utils/index';
 import { useState } from 'react';
+import { getFileData } from '@services/issue';
+
 const cx = classNames.bind(styles);
 
 export const WriteBox = ({ titleState, contentsState, hasTitle }) => {
@@ -43,6 +45,12 @@ export const WriteBox = ({ titleState, contentsState, hasTitle }) => {
     }, labelShowTime)();
   };
 
+  const handleFileBtnOnChange = async ({ target }) => {
+    const selectedFile = target.files[0];
+    const { path, originKey } = await getFileData(selectedFile);
+    setContentsValue(contentsValue + `<img alt="${originKey}" src="${path}">`);
+  };
+
   const inputContainerClassNames = `${cx('input-container')}`;
   return (
     <div className={inputContainerClassNames}>
@@ -57,6 +65,7 @@ export const WriteBox = ({ titleState, contentsState, hasTitle }) => {
         tagName="textarea"
         style={{ height: '436px', alignItems: 'start', padding: '16px' }}
         hasFileUpload={true}
+        handleFileBtnOnChange={handleFileBtnOnChange}
         label="코멘트를 입력하세요"
         _onChange={handleContentsOnChange}
         value={contentsValue}

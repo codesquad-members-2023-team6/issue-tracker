@@ -9,3 +9,7 @@ body {
 :root {
   --contents-width: 1280px;
 }
+
+img {
+  max-width: 100%;
+}

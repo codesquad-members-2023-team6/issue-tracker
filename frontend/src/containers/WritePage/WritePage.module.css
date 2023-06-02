@@ -1,8 +1,8 @@
 .container {
   display: grid;
   grid-template-columns: 33px 1fr 288px;
-  align-items: start;
   gap: 24px;
+  align-items: start;
 }
 
 .input-container {
