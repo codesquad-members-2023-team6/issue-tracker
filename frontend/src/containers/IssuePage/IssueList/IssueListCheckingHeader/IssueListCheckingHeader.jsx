@@ -76,7 +76,7 @@ export const IssueListCheckingHeader = ({
         </div>
         <div className={cx('header-right')}>
           <span className={cx('checked-issue')}>
-            {isCheckedStateNumber}개 이슈 선택
+            {isCheckedStateNumber ?? 0}개 이슈 선택
           </span>
           <Dropdown
             width={dropdownWidth}

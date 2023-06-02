@@ -23,13 +23,14 @@ export const IssuePage = () => {
   const CTAbtn = '이슈 작성';
 
   const [filters, setFilters] = useState(initialFilter);
-  const [issueData, setIssueData] = useState([]);
+  const [issueData, setIssueData] = useState(null);
   const [assigneeList, setAssigneeList] = useState([]);
   const [labelList, setLabelList] = useState([]);
   const [userList, setUserList] = useState([]);
   const [milestoneList, setMilestoneList] = useState([]);
   const [labelAndMilestoneInfo, setLabelAndMilestoneInfo] = useState(tabDatas);
   const [issueCount, setIssueCounts] = useState({ open: 0, closed: 0 });
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -74,6 +75,7 @@ export const IssuePage = () => {
     };
 
     (async () => {
+      setLoading(true);
       const queries = {
         ...filters,
       };
@@ -107,6 +109,7 @@ export const IssuePage = () => {
           milestoneList.length
         )
       );
+      setLoading(false);
     })();
   }, [filters]);
 
@@ -156,6 +159,7 @@ export const IssuePage = () => {
             milestoneList={milestoneList}
             labelList={labelList}
             issueCount={issueCount}
+            loading={loading}
           ></IssueList>
         </div>
       </div>

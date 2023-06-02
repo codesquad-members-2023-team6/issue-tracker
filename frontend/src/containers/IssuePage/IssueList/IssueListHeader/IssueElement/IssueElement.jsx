@@ -20,7 +20,7 @@ export const IssueElement = ({
   const [checkStateObject, setCheckStateObject] = useContext(checkContext);
 
   const isCheckedValue =
-    checkStateObject.find((item) => item.issueId === issueId)?.isChecked ||
+    checkStateObject?.find((item) => item.issueId === issueId)?.isChecked ||
     false;
 
   const handleElementChecked = () => {

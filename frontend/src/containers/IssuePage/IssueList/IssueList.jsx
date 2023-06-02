@@ -5,6 +5,7 @@ import {
   IssueListCheckingHeader,
   IssueListHeader,
 } from '@containers/index';
+import { Empty } from '@components/index';
 import { useEffect, useState } from 'react';
 import { checkContext } from '@src/services/issue';
 
@@ -16,11 +17,11 @@ export const IssueList = ({
   milestoneList,
   labelList,
   issueCount,
+  loading,
 }) => {
   const cx = classNames.bind(styles);
   const containerClassNames = cx('container');
   const contentsClassNames = cx('contents');
-  const emptyClassNames = cx('empty');
 
   const [checkStateObject, setCheckStateObject] = useState([]);
 
@@ -33,9 +34,8 @@ export const IssueList = ({
     setCheckStateObject(initialCheckState);
   }, [issueData]);
 
-  const isCheckedStateNumber = checkStateObject?.filter(
-    (item) => item.isChecked === true
-  ).length;
+  const isCheckedStateNumber =
+    checkStateObject?.filter((item) => item.isChecked === true).length ?? 0;
 
   const [isCheckedHeader, setIsCheckedHeader] = useState(false);
 
@@ -52,31 +52,34 @@ export const IssueList = ({
     setIsCheckedHeader(false);
   }, [issueData]);
 
+  const isReusltEmpty = issueData?.length !== 0;
+
   return (
     <checkContext.Provider value={[checkStateObject, setCheckStateObject]}>
       <div className={containerClassNames}>
-        {issueData &&
-          (isCheckedStateNumber === 0 ? (
-            <IssueListHeader
-              userList={userList}
-              assigneeList={assigneeList}
-              milestoneList={milestoneList}
-              issueCount={issueCount}
-              labelList={labelList}
-              isCheckedHeader={isCheckedHeader}
-              handleHeaderCheckState={handleHeaderCheckState}
-            ></IssueListHeader>
-          ) : (
-            <IssueListCheckingHeader
-              isCheckedStateNumber={isCheckedStateNumber}
-              isCheckedHeader={isCheckedHeader}
-              handleHeaderCheckState={handleHeaderCheckState}
-              setIssueData={setIssueData}
-              checkStateObject={checkStateObject}
-            ></IssueListCheckingHeader>
-          ))}
+        {isCheckedStateNumber === 0 ? (
+          <IssueListHeader
+            userList={userList}
+            assigneeList={assigneeList}
+            milestoneList={milestoneList}
+            issueCount={issueCount}
+            labelList={labelList}
+            isCheckedHeader={isCheckedHeader}
+            handleHeaderCheckState={handleHeaderCheckState}
+          ></IssueListHeader>
+        ) : (
+          <IssueListCheckingHeader
+            isCheckedStateNumber={isCheckedStateNumber}
+            isCheckedHeader={isCheckedHeader}
+            handleHeaderCheckState={handleHeaderCheckState}
+            setIssueData={setIssueData}
+            checkStateObject={checkStateObject}
+          ></IssueListCheckingHeader>
+        )}
         <ul className={contentsClassNames}>
-          {issueData?.length !== 0 ? (
+          {loading ? (
+            <Empty>로딩중</Empty>
+          ) : isReusltEmpty ? (
             issueData?.map((issue) => {
               const title = issue.title;
               const label = issue.labelList[0];
@@ -104,9 +107,7 @@ export const IssueList = ({
               );
             })
           ) : (
-            <div className={emptyClassNames}>
-              검색과 일치하는 결과가 없습니다.
-            </div>
+            <Empty>검색 결과가 없습니다.</Empty>
           )}
         </ul>
       </div>
