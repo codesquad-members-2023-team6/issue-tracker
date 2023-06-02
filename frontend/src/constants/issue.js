@@ -40,17 +40,17 @@ export const options = Object.freeze([
   Object.freeze({
     index: 1,
     contents: '내가 작성한 이슈',
-    filter: Object.freeze({ writer: MY_USER_DATA.index }),
+    filter: { writer: null },
   }),
   Object.freeze({
     index: 2,
     contents: '나에게 할당된 이슈',
-    filter: Object.freeze({ assignee: MY_USER_DATA.index }),
+    filter: { assignee: null },
   }),
   Object.freeze({
     index: 3,
     contents: '내가 댓글을 남긴 이슈',
-    filter: Object.freeze({ commentBy: MY_USER_DATA.index }),
+    filter: { commentBy: null },
   }),
   Object.freeze({
     index: 4,

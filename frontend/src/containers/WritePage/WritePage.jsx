@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Profile, Button } from '@components/index';
-import { MY_USER_DATA } from '@src/constants/user';
 import classNames from 'classnames/bind';
 import styles from './WritePage.module.css';
 import { WriteBox, Sidebox } from '@components/index';

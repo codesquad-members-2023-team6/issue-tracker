@@ -1,5 +1,4 @@
 import { Navbar } from '@components/index';
-import { MY_USER_DATA } from '@src/constants/user';
 import styles from './Layout.module.css';
 import classNames from 'classnames/bind';
 import { storeContext } from '@stores/index';

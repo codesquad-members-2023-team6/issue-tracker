@@ -4,7 +4,6 @@ import com.team6.issue_tracker.domain.issue.domain.Issue;
 import com.team6.issue_tracker.domain.issue.dto.*;
 import com.team6.issue_tracker.domain.issue.service.IssueService;
 import com.team6.issue_tracker.domain.issue.service.IssueUpdateService;
-import com.team6.issue_tracker.domain.issue.service.IssueValidator;
 import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.global.exception.UpdateDomainFailed;
 import com.team6.issue_tracker.global.util.ResponseMessage;
@@ -16,13 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.Arrays;
 
 @Slf4j
 @RestController
@@ -31,12 +25,6 @@ public class IssueController {
 
     private final IssueService issueService;
     private final IssueUpdateService issueUpdateService;
-    private final IssueValidator validator;
-
-    @InitBinder
-    public void init(WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(validator);
-    }
 
     @Operation(
             summary = "이슈 상세 보기",
@@ -55,14 +43,9 @@ public class IssueController {
             description = "사용자는 새로운 이슈를 작성할 수 있다."
     )
     @PostMapping("/issue")
-    public ResponseEntity<ResponseMessage<Object>> postNewIssue(@Validated @RequestBody CreateIssueRequest request,
-                                                                    BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            throw new IllegalArgumentException("New issue created failed");
-        }
-
+    public ResponseEntity<ResponseMessage<Object>> postNewIssue(@RequestBody CreateIssueRequest request) {
         Issue saveIssue = issueService.saveIssue(request.toIssue());
+
         return ResponseMessage.of(HttpStatus.CREATED, "New issue created successfully", saveIssue);
     }
 

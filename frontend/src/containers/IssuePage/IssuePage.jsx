@@ -11,6 +11,8 @@ import {
 import { IssueList } from '@containers/index';
 import { isFilterApplied } from '@services/issue';
 import { useNavigate } from 'react-router-dom';
+import { useContext, useReducer } from 'react';
+import { storeContext } from '@stores/index';
 
 export const IssuePage = () => {
   const cx = classNames.bind(styles);
@@ -30,6 +32,26 @@ export const IssuePage = () => {
   const [issueCount, setIssueCounts] = useState({ open: 0, closed: 0 });
 
   const navigate = useNavigate();
+
+  const [user, userDispatch] = useContext(storeContext).user;
+
+  const insertLoginUserDataToOptions = (options) => {
+    const memberIdx = user.memberIdx;
+    const copiedOptions = [...options];
+    copiedOptions.forEach((option, i) => {
+      switch (option.index) {
+        case 1:
+          option.filter.writer = memberIdx;
+        case 2:
+          option.filter.writer = memberIdx;
+        case 3:
+          option.filter.commentBy = memberIdx;
+      }
+    });
+    return copiedOptions;
+  };
+
+  const copiedOptions = insertLoginUserDataToOptions(options);
 
   useEffect(() => {
     const noneLabel = {
@@ -106,7 +128,7 @@ export const IssuePage = () => {
       <div className={issuePageClassNames}>
         <div className={headerClassNames}>
           <div className={headerLeftClassNames}>
-            <Filterbar options={options}></Filterbar>
+            <Filterbar options={copiedOptions}></Filterbar>
             {isFilterApplied(filters, initialFilter) && (
               <Button {...filterClearButtonInfo} />
             )}
