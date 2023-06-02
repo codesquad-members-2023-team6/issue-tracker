@@ -21,7 +21,7 @@ public class LabelService {
 
     public Map<Long, LabelSummary> getAllLabelSummaries() {
         Map<Long, LabelSummary> labels = new HashMap<>();
-        labelRepository.findAllByIsDeletedFalse().forEach(label -> labels.put(label.getLabelIdx(), LabelSummary.of(label)));
+        labelRepository.findAllByIsDeletedFalse().forEach(label -> labels.put(label.getLabelIdx(), LabelSummary.fromLabel(label)));
         return labels;
     }
 
@@ -33,7 +33,7 @@ public class LabelService {
 
     public List<LabelDetail> getAllLabelDetails() {
         List<LabelDetail> list = new ArrayList<>();
-        labelRepository.findAllByIsDeletedFalse().forEach(label -> list.add(LabelDetail.of(label)));
+        labelRepository.findAllByIsDeletedFalse().forEach(label -> list.add(LabelDetail.fromLabel(label)));
         return list;
     }
 }

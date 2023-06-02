@@ -24,12 +24,11 @@ public class CreateIssueRequest {
 
     public Issue toIssue() {
         return Issue.builder()
-                .issueIdx(null)
                 .title(title)
                 .contents(contents)
                 .writer(AggregateReference.to(writer))
                 .assignee(getAssigneeRef())
-                .labelOnIssue(getLabelingMap(labels))
+                .labelOnIssue(getLabelingList(labels))
                 .milestone(getMilestoneRef())
                 .createdAt(Instant.now())
                 .isOpen(true)
@@ -37,7 +36,7 @@ public class CreateIssueRequest {
                 .build();
     }
 
-    private List<Labeling> getLabelingMap (List<LabelSummary> labels) {
+    private List<Labeling> getLabelingList(List<LabelSummary> labels) {
         List<Labeling> labelings= new ArrayList<>();
         labels.stream().map(e -> new Labeling(AggregateReference.to(e.getLabelIdx())))
                     .forEach(labelings::add);

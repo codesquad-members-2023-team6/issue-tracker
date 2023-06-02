@@ -33,4 +33,8 @@ public interface IssueRepository extends PagingAndSortingRepository<Issue, Long>
     @Modifying
     @Query("UPDATE issue SET assignee = :assignee WHERE issue_idx = :issueIdx")
     boolean updateIssueAssignee(@Param("assignee") Long assignee, @Param("issueIdx") Long issueIdx);
+
+    @Modifying
+    @Query("UPDATE issue SET milestone = :milestoneIdx WHERE issue_idx = :issueIdx")
+    boolean updateIssueMilestone(@Param("milestoneIdx") Long milestoneIdx, @Param("issueIdx") Long  issueIdx);
 }

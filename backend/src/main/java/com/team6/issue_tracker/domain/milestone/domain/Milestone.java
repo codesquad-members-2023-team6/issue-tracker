@@ -3,6 +3,7 @@ package com.team6.issue_tracker.domain.milestone.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.joda.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
@@ -11,6 +12,7 @@ import java.time.Instant;
 
 @Getter
 @Builder
+@ToString
 @NoArgsConstructor
 public class Milestone {
     @Id

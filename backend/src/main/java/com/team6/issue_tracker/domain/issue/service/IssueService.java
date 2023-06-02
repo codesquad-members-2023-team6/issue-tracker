@@ -4,8 +4,6 @@ import com.team6.issue_tracker.domain.comment.domain.Comment;
 import com.team6.issue_tracker.domain.comment.service.CommentService;
 import com.team6.issue_tracker.domain.comment.dto.CommentDto;
 import com.team6.issue_tracker.domain.issue.domain.Issue;
-import com.team6.issue_tracker.domain.issue.domain.Labeling;
-import com.team6.issue_tracker.domain.label.domain.Label;
 import com.team6.issue_tracker.domain.milestone.dto.MilestoneDetail;
 import com.team6.issue_tracker.domain.model.Status;
 import com.team6.issue_tracker.domain.page.dto.IssueFilter;
@@ -18,11 +16,14 @@ import com.team6.issue_tracker.domain.member.domain.Member;
 import com.team6.issue_tracker.domain.member.dto.MemberDetail;
 import com.team6.issue_tracker.domain.milestone.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class IssueService {
@@ -71,7 +72,7 @@ public class IssueService {
 
         List<LabelSummary> labelDtoList = new ArrayList<>();
         labelService.findAllById(issue.getLabelOnIssue())
-                .forEach(l -> labelDtoList.add(LabelSummary.of(l)));
+                .forEach(l -> labelDtoList.add(LabelSummary.fromLabel(l)));
 
         List<CommentDto> commentDtos = new ArrayList<>();
         for (Comment comment : comments) {
@@ -111,8 +112,8 @@ public class IssueService {
         return milestone;
     }
 
-    public void saveIssue(Issue toIssue) {
-        issueRepository.save(toIssue);
+    public Issue saveIssue(Issue toIssue) {
+        return issueRepository.save(toIssue);
     }
 
     public long getIssueNum(Status status) {

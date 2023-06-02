@@ -22,7 +22,6 @@ public class IssueUpdateService {
     }
 
     public boolean updateIssueListStatus(List<Long> issueIdx, Status status) {
-        log.info("issueidx = {}, status = {}", issueIdx, status);
         return issueRepository.updateIssuesIsOpen(status == Status.OPEN, issueIdx);
     }
 
@@ -36,5 +35,9 @@ public class IssueUpdateService {
 
     public boolean updateIssueAssignee(long issueIdx, Long assigneeIdx) {
         return issueRepository.updateIssueAssignee(assigneeIdx, issueIdx);
+    }
+
+    public boolean updateIssueMilestone(long issueIdx, Long milestoneIdx) {
+        return issueRepository.updateIssueMilestone(milestoneIdx, issueIdx);
     }
 }

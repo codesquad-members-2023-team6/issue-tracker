@@ -16,7 +16,7 @@ public class LabelSummary {
     private String backgroundColor;
     private String style;
 
-    public static LabelSummary of(Label label) {
+    public static LabelSummary fromLabel(Label label) {
         return LabelSummary.builder()
                 .labelIdx(label.getLabelIdx())
                 .title(label.getTitle())

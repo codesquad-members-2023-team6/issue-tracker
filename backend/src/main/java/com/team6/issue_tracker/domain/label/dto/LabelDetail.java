@@ -13,7 +13,7 @@ public class LabelDetail {
     private String backgroundColor;
     private String style;
 
-    public static LabelDetail of(Label label) {
+    public static LabelDetail fromLabel(Label label) {
         return LabelDetail.builder()
                 .index(label.getLabelIdx())
                 .title(label.getTitle())
