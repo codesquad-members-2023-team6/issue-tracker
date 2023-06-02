@@ -42,10 +42,13 @@ export const IssuePage = () => {
       switch (option.index) {
         case 1:
           option.filter.writer = memberIdx;
+          break;
         case 2:
-          option.filter.writer = memberIdx;
+          option.filter.assignee = memberIdx;
+          break;
         case 3:
           option.filter.commentBy = memberIdx;
+          break;
       }
     });
     return copiedOptions;
